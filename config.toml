@@ -26,3 +26,5 @@ menu_items = [
 logo_text = "mdberkey"
 
 author = "Michael Berkey"
+
+page_titles = "combined"

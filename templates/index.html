@@ -5,8 +5,10 @@
 {%- endblock -%}
 
 {% block content %}
-    <!-- TODO - add a title / regular page formatting -->
-    {{ section.content | safe }}
+    <div class="post">
+        <h1 class="post-title">{{ section.title }}</h1>
+        {{ post_macros::content(page=section, summary=false, show_only_description=false) }}
+    </div>
 {% endblock content %}
 
 {% block footer %}
