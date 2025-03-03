@@ -1,5 +1,5 @@
 +++
-title = "More ranting"
+title = "Ranting"
 date = 2019-02-03
 
 [taxonomies]

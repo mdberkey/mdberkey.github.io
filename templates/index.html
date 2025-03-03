@@ -1,0 +1,20 @@
+{% extends "terminimal/templates/index.html" %}
+
+{%- block title -%}
+    {{ title_macros::title(page_title=section.title, main_title=config.title) }}
+{%- endblock -%}
+
+{% block content %}
+    <!-- TODO - add a title / regular page formatting -->
+    {{ section.content | safe }}
+{% endblock content %}
+
+{% block footer %}
+<footer class="footer">
+    <div class="footer__inner">
+        <div class="copyright">
+            <span>© {{ date_macros::now_year() }} {{ config.extra.author }} | Powered by <a href="https://www.getzola.org/">Zola</a></span>
+        </div>
+    </div>
+</footer>
+{% endblock footer %}
