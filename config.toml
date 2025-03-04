@@ -23,7 +23,7 @@ menu_items = [
     {name = "archive", url = "$BASE_URL/archive"},
 ]
 
-logo_text = "mdberkey"
+logo_text = "（'-'）.｡oO(mdberkey)"
 
 author = "Michael Berkey"
 
