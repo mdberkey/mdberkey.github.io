@@ -2,7 +2,7 @@
 title = "Michael Berkey"
 +++
 
-{{ image(src="/michael.jpg", position="left", style="border-radius: 20px; width: 25%;") }}
+{{ image(src="/michael.jpg", alt="Image of Michael",position="left", style="border-radius: 20px; width: 25%;") }}
 
 <br>
 
