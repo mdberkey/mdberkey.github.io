@@ -6,7 +6,7 @@ title = "Michael Berkey"
 
 <br>
 
-Hi, I'm Michael Berkey (mdberkey). Currently, I'm working as a software engineer at [Capital One](https://www.capitalone.com/tech/). Before that, I graduated from the [University of Wisconin-Madison](https://www.wisc.edu/) with a B.S. in Computer Science. During college, you could find me tinkering with code in the [Undergraduate Projects Lab](https://www.upl.cs.wisc.edu/) or creating video games for [primate research](https://psycnet.apa.org/record/2025-21970-001) (yes, really). 
+Hi, I'm Michael (mdberkey). Currently, I'm working as a software engineer at [Capital One](https://www.capitalone.com/tech/). Before that, I graduated from the [University of Wisconin-Madison](https://www.wisc.edu/) with a B.S. in Computer Science. During college, you could find me tinkering with code in the [Undergraduate Projects Lab](https://www.upl.cs.wisc.edu/) or creating video games for [primate research](https://psycnet.apa.org/record/2025-21970-001) (yes, really). 
 
 Outside of software development, I love to ski, rock climb, analyze movies, and play video games.
 
