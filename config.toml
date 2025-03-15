@@ -28,3 +28,6 @@ logo_text = "（'-'）.｡oO(mdberkey)"
 author = "Michael Berkey"
 
 page_titles = "combined"
+
+favicon = "/favicon.png"
+favicon_mimetype = "image/png"
