@@ -22,7 +22,9 @@
     {% elif section.extra and section.extra.emoticon is defined %}
         {{ section.extra.emoticon }}
     {% else %}
+        {% block emoticon %}
         ('_')
+        {% endblock emoticon %}
     {% endif %}
 </div>
 <div class="footer-socials", style="display: block;">
