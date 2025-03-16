@@ -8,6 +8,10 @@ build_search_index = false
 
 theme = "terminimal"
 
+generate_feeds = true
+
+feed_filenames = ["rss.xml"]
+
 taxonomies = [
     {name = "tags"},
 ]
@@ -37,3 +41,5 @@ social_links = [
     { name = "github", url = "https://github.com/mdberkey"},
     { name = "linkedin", url = "https://www.linkedin.com/in/michael-berkey1/"},
 ]
+
+post_view_navigation_prompt = ""
