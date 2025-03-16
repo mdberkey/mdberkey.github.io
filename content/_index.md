@@ -1,5 +1,7 @@
 +++
 title = "Michael Berkey"
+[extra]
+emoticon = "(¬_¬)ﾉ"
 +++
 
 {{ image(src="/michael.jpg", alt="Image of Michael",position="left", style="border-radius: 20px; width: 25%;") }}
@@ -16,7 +18,3 @@ Outside of software development, I love to ski, rock climb, analyze movies, and 
 - Email: &nbsp; &nbsp;[mberkey2@gmail.com](mailto:mberkey2@gmail.com)
 - GitHub: &nbsp; [@mdberkey](https://github.com/mdberkey)
 - LinkedIn: [michael-berkey-1](https://www.linkedin.com/in/michael-berkey1/)
-
-<br>
-
-(¬_¬)ﾉ

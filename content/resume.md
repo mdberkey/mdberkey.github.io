@@ -2,6 +2,8 @@
 title = "Resume"
 path = "resume"
 template = "resume.html"
+[extra]
+emoticon = "(⌐▨_▨)"
 +++
 
 ### Education
@@ -119,7 +121,3 @@ template = "resume.html"
 <br>
 
 Last updated: 11/06/2024
-
-<br>
-
-(⌐▨_▨)

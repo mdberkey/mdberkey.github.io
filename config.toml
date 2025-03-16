@@ -31,3 +31,9 @@ page_titles = "combined"
 
 favicon = "/favicon.png"
 favicon_mimetype = "image/png"
+
+social_links = [
+    { name = "email", url = "mailto:mberkey2@gmail.com"},
+    { name = "github", url = "https://github.com/mdberkey"},
+    { name = "linkedin", url = "https://www.linkedin.com/in/michael-berkey1/"},
+]
