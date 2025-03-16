@@ -65,7 +65,7 @@ For example, this is how I added an emoticon variable and social media icons to 
 ```
 [Source code](https://github.com/mdberkey/mdberkey.github.io)
 
-For hosting, I chose [GitHub pages](https://pages.github.com/) since it's free and easy to set up. Also, the Zola docs had a [nice guide](https://www.getzola.org/documentation/deployment/github-pages/) for setting this up.
+For hosting, I chose [GitHub pages](https://pages.github.com/) since it's free and easy to set up. Also, the Zola docs have a [nice guide](https://www.getzola.org/documentation/deployment/github-pages/) for setting this up.
 
 Overall, I enjoyed creating this site and I'm happy with how it turned out.
 I also liked learning about Zola and I plan to add more features, such as a light mode toggle.
