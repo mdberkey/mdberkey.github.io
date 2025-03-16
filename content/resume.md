@@ -65,7 +65,7 @@ emoticon = "(⌐▨_▨)"
 
 ### Projects
 ---
-**People Counter Device** (Aug. 2022 - Dec. 2023) \
+**People Counter Device** (Aug. 2022 - Dec. 2023) 
 
 -    Coded a Python application to track the number of people in a
     room on a Raspberry Pi for a student organization. Integrated an
@@ -76,7 +76,7 @@ emoticon = "(⌐▨_▨)"
     Discord API and dealing with the limited computing resources of
     the Raspberry Pi.
 
-**Undergraduate Project Lab Coordinator** (May 2021 - Dec. 2023) \
+**Undergraduate Project Lab Coordinator** (May 2021 - Dec. 2023) 
 
 -    Helped lead a student organization focused on fostering
     personal coding projects. I tutored students, provided them
@@ -98,16 +98,16 @@ emoticon = "(⌐▨_▨)"
 ### Technical Skills
 ---
 **Languages**:
-- Java, Python, JavaScript, SQL (Postgres), Golang, Rust, C, HTML/CSS\
+- Java, Python, JavaScript, SQL (Postgres), Golang, Rust, C, HTML/CSS
 
 **Frameworks**:
-- Spring Boot, JUnit, Apache Maven, Apache Flink, React, OpenCV, Flask\
+- Spring Boot, JUnit, Apache Maven, Apache Flink, React, OpenCV, Flask
 
 **Developer Tools**: 
-- Git, Docker, Docker Compose, Amazon Web Services (ECS, Lambda, etc.), Cucumber, Open Telemetry, Micrometer, Agile, REST, Object Oriented Programming\
+- Git, Docker, Docker Compose, Amazon Web Services (ECS, Lambda, etc.), Cucumber, Open Telemetry, Micrometer, Agile, REST, Object Oriented Programming
 
 **Libraries**: 
-- Log4j, PyTorch, Pandas, Matplotlib, Pygame, Cytoscape.js\
+- Log4j, PyTorch, Pandas, Matplotlib, Pygame, Cytoscape.js
 
 **Certifications**: 
 - Amazon Web Services Certified Solutions Architect Associate (AWS SAA-CO3)
