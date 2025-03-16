@@ -25,6 +25,7 @@ menu_items = [
     {name = "resume", url = "$BASE_URL/resume"},
     {name = "blog", url = "$BASE_URL/blog"},
     {name = "archive", url = "$BASE_URL/archive"},
+    {name = "rss", url = "https://mdberkey.github.io/rss.xml"}
 ]
 
 logo_text = "（'-'）.｡oO(mdberkey)"
