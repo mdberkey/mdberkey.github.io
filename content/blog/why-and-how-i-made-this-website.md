@@ -1,5 +1,5 @@
 +++
-title = "Why and how I made this website"
+title = "How and Why I made this website"
 date = 2025-03-16
 
 [taxonomies]
