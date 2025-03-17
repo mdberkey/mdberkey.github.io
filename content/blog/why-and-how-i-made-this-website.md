@@ -41,7 +41,7 @@ For example, this is how I added an emoticon variable and social media icons to 
         {% endblock emoticon %}
     {% endif %}
 </div>
-<div class="footer-socials", style="display: block;">
+<div class="footer-soc-icons", style="display: block;">
    {% for link in config.extra.social_links %}
         <a
         href="{{ link.url }}"
@@ -51,11 +51,7 @@ For example, this is how I added an emoticon variable and social media icons to 
         target="_blank"
         rel="noopener"
         >
-        {% if link.name == "email" %}
-            <i class="fa-solid fa-envelope"></i>
-        {% else %}
-            <i class="fab fa-{{ link.name }}"></i>
-        {% endif %}
+            ...
         </a>
         {% if not loop.last %} | {% endif %}
     {% endfor %}
