@@ -15,6 +15,6 @@ Outside of software development, I love to ski, rock climb, analyze movies, and 
 <br>
 
 ### Socials
-- Email: &nbsp; &nbsp;[mberkey2@gmail.com](mailto:mberkey2@gmail.com)
-- GitHub: &nbsp; [@mdberkey](https://github.com/mdberkey)
-- LinkedIn: [michael-berkey-1](https://www.linkedin.com/in/michael-berkey1/)
+- Email: &nbsp; &nbsp;[mberkey2@gmail.com](mailto:mberkey2@gmail.com) The best way to contact me.
+- GitHub: &nbsp; [@mdberkey](https://github.com/mdberkey) &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Where my personal projects live.
+- LinkedIn: [michael-berkey-1](https://www.linkedin.com/in/michael-berkey1/) &nbsp; Feel free to connect.
