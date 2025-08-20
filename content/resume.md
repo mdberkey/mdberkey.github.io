@@ -16,7 +16,7 @@ emoticon = "(⌐▨_▨)"
 
 ### Experience
 ---
-**Back-end Software Engineer** (Feb. 2024 - Present) \
+**Backend Software Engineer** (Feb. 2024 - Present) \
 *Capital One - Java, Spring Boot, Maven, Flink, Kafka, JUnit, OTEL, Docker, AWS | Atlanta, GA*
 - Increased throughput of data processing pipeline for 1 million+ transaction datapoints per day using Java.
 - Reduced data transformation time 65% for Spring Boot microservice by using multi-threading in Java.
@@ -38,7 +38,7 @@ emoticon = "(⌐▨_▨)"
 - Created Jenkins CI/CD build pipeline using Docker, Bash, AWS CloudFormation alongside DevOps team
 
 **Software Developer** (May 2021 - May 2022) \
-*Wisconsin National Primate Research Center - Python, Pandas*
+*Wisconsin National Primate Research Center - Python, Pandas | Madison, WI*
 - Engineered touchscreen game engine to record data for primate research on a Raspberry Pi in Python.
 - Implemented bitwise algorithm for generating in-game images with unique patterns using Python, Pygame.
 - Integrated game engine with a USB relay device by creating a Python extension module in C.
@@ -48,7 +48,7 @@ emoticon = "(⌐▨_▨)"
 
 ### Projects
 ---
-**People Counter Device - Python, API** \
+**People Counter Device - Python, API** 
 - Coded a Python application to track the number of people in a room on a Raspberry Pi for a student organization.
 - Integrated a Discord API, OpenCV model, and a webcam to update the count on multiple platforms in real-time.
 - Faced challenges integrating the program with the Discord API and optimizing the application to work within the
@@ -58,7 +58,7 @@ limited computing resources of the Raspberry Pi.
 - Created application that parses and summarizes documents, audio files, and videos using a LLM in Go.
 - Overcame performance challenges from large video files by using concurrent Goroutines to process segments
 
-**Undergraduate Project Lab Coordinator** \
+**Undergraduate Project Lab Coordinator** 
 - Helped lead a student organization focused on fostering
 personal coding projects. I tutored students, provided them
 resources to bootstrap projects, connected them with
@@ -93,4 +93,4 @@ arranging judges, supervising contestants, etc.
 
 <br>
 
-Last updated: 04/13/2025
+Last content update: 04/13/2025
