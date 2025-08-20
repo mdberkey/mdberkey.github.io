@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Blog | mdberkey</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://mdberkey.github.io/style.css">
+    <link rel="stylesheet" href="https://mdberkey.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://mdberkey.github.io/font-hack-subset.css">
+
+    <meta name="description" content="">
+
+    <meta property="og:description" content="">
+    <meta property="og:title" content="Blog | mdberkey">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mdberkey.github.io/blog/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="Blog | mdberkey">
+    <meta property="twitter:domain" content="mdberkey.github.io">
+    <meta property="twitter:url" content="https://mdberkey.github.io/blog/">
+
+                <link rel="alternate" type="application/atom+xml" title="mdberkey Atom Feed" href="https://mdberkey.github.io/atom.xml" />
+        <link rel="shortcut icon" type="image/png" href="/favicon.png">
+    
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://mdberkey.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            （&#x27;-&#x27;）.｡oO(mdberkey)
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://mdberkey.github.io">about me</a></li>
+            
+                <li><a href="https://mdberkey.github.io/resume">resume</a></li>
+            
+                <li class="active"><a href="https://mdberkey.github.io/blog">blog</a></li>
+            
+                <li><a href="https://mdberkey.github.io/archive">archive</a></li>
+            
+                <li><a href="https://mdberkey.github.io/atom.xml">feed</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="posts">
+            <div class="post on-list">
+                
+    <h1 class="post-title"><a href="https://mdberkey.github.io/blog/automating-keyword-extraction-and-ranking-to-enhance-a-resume/">Automating keyword extraction and ranking to enhance a resume</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-04-29
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://mdberkey.github.io/tags/llm/">#LLM</a>&nbsp;
+                <a class="post-tag" href="https://mdberkey.github.io/tags/python/">#python</a></span>
+    
+
+                <div class="post-content">
+            <ul>
+<li>TL;DR I extracted keywords from job descriptions with <a href="https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/">Gemini</a> and created a Python script to rank them to enhance my friend's resume.</li>
+</ul>
+<p>I spent some time this past week helping a friend update their resume.
+For tech roles, it isn't easy to pass the resume screen stage (as of 04/25).
+Due to the large volume of applicants, resumes are filtered out by automated parsers which check for desirable keywords.
+Since these resume parsers are closed source and every company operates differently, finding the right keywords is a very inexact science, but that never stopped me from trying :).</p>
+<p>A solid strategy is to pull keywords from the job descriptions you are applying to, but this is time-consuming especially if you need to apply to 100+ roles.
+I decided to automate this somewhat and I outlined these steps:</p>
+<ol>
+<li>Extract keywords from job postings.</li>
+<li>Rank the keywords based on how frequently they appear.</li>
+<li>Take the top X keywords and include them in the resume.</li>
+</ol>
+<p>I brainstormed possible programs for keyword extraction, but after doing some testing, it seems like modern LLMs are reasonably good at it. So I created this prompt:</p>
+<pre data-lang="md" style="background-color:#2b303b;color:#c0c5ce;" class="language-md "><code class="language-md" data-lang="md"><span>From the supplied job description, take all of the relevant keywords that an average ATS system will look for in resumes when choosing to move a candidate forward to the next round and put them in order from most to least impactful in this decision. Have your output be a numbered list with just the keywords and no paragraph at the top. Example:
+</span><span style="color:#bf616a;">  1. keyword_1
+</span><span style="color:#bf616a;">  2. keyword_2
+</span><span style="color:#bf616a;">  3. keyword_3
+</span><span style="color:#bf616a;">  Make sure to get ALL of the keywords. Here is the job description: 
+</span><span style="color:#bf616a;">
+</span><span style="color:#bf616a;">  &lt;job </span><span style="color:#d08770;">description</span><span style="color:#bf616a;">&gt;
+</span></code></pre>
+<p>I manually fed the prompt to <a href="https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/">Gemini 2.5</a>, copied the output to a file, added a line with the company name, and repeated for 10 job descriptions.
+I could have automated this by creating a web scraper that calls the Gemini API, but 10 was enough and I was lazy :P. Maybe I'll come back and code it on a rainy day.</p>
+<p>The resulting file looked something like this:</p>
+<pre data-lang="md" style="background-color:#2b303b;color:#c0c5ce;" class="language-md "><code class="language-md" data-lang="md"><span style="background-color:#4f5b66;color:#c0c5ce;">---
+</span><span>google
+</span><span style="color:#bf616a;">1. Software Engineer / Platform Engineer
+</span><span style="color:#bf616a;">2. Rust
+</span><span style="color:#bf616a;">3. Go
+</span><span style="color:#bf616a;">4. C++
+</span><span style="color:#bf616a;">5. Java
+</span><span style="color:#bf616a;">
+</span><span>...
+</span></code></pre>
+<p>I then wrote a Python script to parse and rank the keywords.
+Note that at the start, I added this regex <code>re.sub(r"\(.*?\)", "", line)</code> since Gemini liked to add unecessary abreviations wrapped in parentheses. Ex: <code>Service Oriented Architecture (SOA)</code>.</p>
+<p>The script then creates dictionaries for each company ranking (remember there is a list of keywords for each company/job posting). It assigns each keyword a score and takes the largest one if there are duplicates.
+Finally, it combines the dictionaries by adding together the scores of duplicate keywords across company dicts and creates a file with the final ranking of each keyword.</p>
+<pre data-lang="Python" style="background-color:#2b303b;color:#c0c5ce;" class="language-Python "><code class="language-Python" data-lang="Python"><span>    file_lines = </span><span style="color:#96b5b4;">open</span><span>(&quot;</span><span style="color:#a3be8c;">Keywords.md</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">r</span><span>&quot;).</span><span style="color:#bf616a;">readlines</span><span>()
+</span><span>    file_lines = [re.</span><span style="color:#bf616a;">sub</span><span>(</span><span style="color:#b48ead;">r</span><span>&quot;</span><span style="color:#96b5b4;">\(</span><span style="color:#d08770;">.</span><span>*?</span><span style="color:#96b5b4;">\)</span><span>&quot;, &quot;&quot;, line) </span><span style="color:#b48ead;">for </span><span>line </span><span style="color:#b48ead;">in </span><span>file_lines]
+</span><span>    file_lines = [line.</span><span style="color:#bf616a;">strip</span><span>() </span><span style="color:#b48ead;">for </span><span>line </span><span style="color:#b48ead;">in </span><span>file_lines]
+</span><span>    file_lines = [line </span><span style="color:#b48ead;">for </span><span>line </span><span style="color:#b48ead;">in </span><span>file_lines </span><span style="color:#b48ead;">if </span><span>line]
+</span><span>
+</span><span>    company_keywords = {}
+</span><span>    curr_company = </span><span style="color:#d08770;">None
+</span><span>
+</span><span>    </span><span style="color:#65737e;"># get keywords by company
+</span><span>    </span><span style="color:#b48ead;">for </span><span>i </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#96b5b4;">len</span><span>(file_lines)):
+</span><span>        prev, curr = file_lines[i-</span><span style="color:#d08770;">1</span><span>], file_lines[i]
+</span><span>        </span><span style="color:#b48ead;">if </span><span>prev == &quot;</span><span style="color:#a3be8c;">---</span><span>&quot;:
+</span><span>            curr_company = curr
+</span><span>            </span><span style="color:#b48ead;">if </span><span>curr_company not in company_keywords:
+</span><span>                company_keywords[curr] = {}
+</span><span>            </span><span style="color:#b48ead;">continue
+</span><span>        </span><span style="color:#b48ead;">elif </span><span>curr != &quot;</span><span style="color:#a3be8c;">---</span><span>&quot; and curr_company:
+</span><span>            num, string = curr.</span><span style="color:#bf616a;">split</span><span>(&quot;</span><span style="color:#a3be8c;">. </span><span>&quot;, </span><span style="color:#d08770;">1</span><span>)
+</span><span>            score = </span><span style="color:#d08770;">100 </span><span>- </span><span style="color:#bf616a;">int</span><span>(num)
+</span><span>
+</span><span>            </span><span style="color:#b48ead;">if </span><span>string not in company_keywords[curr_company]:
+</span><span>                company_keywords[curr_company][string] = score
+</span><span>            </span><span style="color:#b48ead;">elif </span><span>score &gt; company_keywords[curr_company][string]:
+</span><span>                company_keywords[curr_company][string] = score
+</span><span>
+</span><span>    </span><span style="color:#65737e;"># combine dicts
+</span><span>    res = </span><span style="color:#bf616a;">Counter</span><span>({})
+</span><span>    </span><span style="color:#b48ead;">for </span><span>k, d </span><span style="color:#b48ead;">in </span><span>company_keywords.</span><span style="color:#bf616a;">items</span><span>():
+</span><span>        res += </span><span style="color:#bf616a;">Counter</span><span>(d)
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">with </span><span style="color:#96b5b4;">open</span><span>(&quot;</span><span style="color:#a3be8c;">results.txt</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">w</span><span>&quot;) </span><span style="color:#b48ead;">as </span><span>f:
+</span><span>        </span><span style="color:#b48ead;">for </span><span>k, d </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">sorted</span><span>(res.</span><span style="color:#bf616a;">items</span><span>(), </span><span style="color:#bf616a;">key</span><span>=</span><span style="color:#b48ead;">lambda </span><span style="color:#bf616a;">x</span><span>: x[</span><span style="color:#d08770;">1</span><span>], </span><span style="color:#bf616a;">reverse</span><span>=</span><span style="color:#d08770;">True</span><span>):
+</span><span>            f.</span><span style="color:#bf616a;">write</span><span>(</span><span style="color:#b48ead;">f</span><span>&quot;{k}</span><span style="color:#a3be8c;"> : </span><span>{d}</span><span style="color:#96b5b4;">\n</span><span>&quot;)
+</span></code></pre>
+<p>Here's the top 10 keywords and their scores:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Python : 1145
+</span><span>Software Engineer : 1072
+</span><span>Java : 1054
+</span><span>Collaboration : 840
+</span><span>Computer Science : 712
+</span><span>Design : 699
+</span><span>Problem Solving : 607
+</span><span>C++ : 567
+</span><span>Reliability : 547
+</span><span>Automation : 544
+</span></code></pre>
+<p>It would be hard to meaningfully test the effectiveness of these keywords, but based on my experience and the job descriptions I pulled from, they seem pretty good.
+Some good enhancements for the future would be the aforementioned web scraper and a more robust scoring system. Overall though, I'm glad I was able to help my friend and that whenever I need to update my resume, I can use this program.</p>
+
+        </div>
+
+            </div>
+        
+            <div class="post on-list">
+                
+    <h1 class="post-title"><a href="https://mdberkey.github.io/blog/how-and-why-i-made-this-website/">How and Why I made this website</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-03-16
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://mdberkey.github.io/tags/zola/">#zola</a></span>
+    
+
+                <div class="post-content">
+            <ul>
+<li>TL;DR I made this website using Zola to discuss my work/interests.</li>
+</ul>
+<p>People kept asking, so I thought I'd make my first post to answer their questions.</p>
+<h3 id="why-make-a-personal-website">Why make a personal website?</h3>
+<p>I wanted a place to showcase my work and post about my interests.
+I'll do my best to keep the <a href="https://mdberkey.github.io/">about me</a> and <a href="https://mdberkey.github.io/resume/">resume</a> pages up to date.
+I plan to make this blog mostly tech-focused, but I have many interests that will probably make their way into here (like my <a href="https://letterboxd.com/squidy_pete/film/das-boot/">love of WW2 movies</a>).</p>
+<h3 id="how-did-you-make-this-website">How did you make this website?</h3>
+<p>I chose <a href="https://www.getzola.org/">Zola</a> for the static site generator since it's relatively simple and fast.
+Also <a href="https://github.blog/developer-skills/programming-languages-and-frameworks/why-rust-is-the-most-admired-language-among-developers/">Rust is cool</a> (⌐■_■).
+I love how easy it is to extend a theme to suit my needs.
+For example, I based my theme off of the <a href="https://github.com/pawroman/zola-theme-terminimal">Terminimal theme</a> and to add more to the templates, I just needed to create one with the same name and a line like this at the top:</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>{% extends &quot;terminimal/templates/index.html&quot; %}
+</span></code></pre>
+<p>I could then add any block I wanted to replace in this template.
+For example, this is how I added an emoticon variable and social media icons to the footer.</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>{% block footer %}
+</span><span>&lt;</span><span style="color:#bf616a;">div </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">footer-emoticon</span><span>&quot;</span><span style="color:#d08770;">, style</span><span>=&quot;display: block; margin-bottom: </span><span style="color:#d08770;">40px</span><span>;&quot;&gt;
+</span><span>    {% if page.extra and page.extra.emoticon is defined %}
+</span><span>        {{ page.extra.emoticon }}
+</span><span>    {% elif section.extra and section.extra.emoticon is defined %}
+</span><span>        {{ section.extra.emoticon }}
+</span><span>    {% else %}
+</span><span>        {% block emoticon %}
+</span><span>        (&#39;_&#39;)
+</span><span>        {% endblock emoticon %}
+</span><span>    {% endif %}
+</span><span>&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">div </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">footer-soc-icons</span><span>&quot;</span><span style="color:#d08770;">, style</span><span>=&quot;display: block;&quot;&gt;
+</span><span>   {% for link in config.extra.social_links %}
+</span><span>        &lt;</span><span style="color:#bf616a;">a
+</span><span>        </span><span style="color:#d08770;">href</span><span>=&quot;</span><span style="color:#a3be8c;">{{ link.url }}</span><span>&quot;
+</span><span>        </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">social-link</span><span>&quot;
+</span><span>        </span><span style="color:#d08770;">style</span><span>=&quot;text-decoration: none;&quot;
+</span><span>        </span><span style="color:#d08770;">aria-label</span><span>=&quot;</span><span style="color:#a3be8c;">{{ link.name | title }}</span><span>&quot;
+</span><span>        </span><span style="color:#d08770;">target</span><span>=&quot;</span><span style="color:#a3be8c;">_blank</span><span>&quot;
+</span><span>        </span><span style="color:#d08770;">rel</span><span>=&quot;</span><span style="color:#a3be8c;">noopener</span><span>&quot;
+</span><span>        &gt;
+</span><span>            ...
+</span><span>        &lt;/</span><span style="color:#bf616a;">a</span><span>&gt;
+</span><span>        {% if not loop.last %} | {% endif %}
+</span><span>    {% endfor %}
+</span><span>&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>...
+</span><span>{% endblock footer %}
+</span></code></pre>
+<p><a href="https://github.com/mdberkey/mdberkey.github.io">Source code</a></p>
+<p>For hosting, I chose <a href="https://pages.github.com/">GitHub pages</a> since it's free and easy to set up. Also, the Zola docs have a <a href="https://www.getzola.org/documentation/deployment/github-pages/">nice guide</a> for setting this up.</p>
+<p>Overall, I enjoyed creating this site and I'm happy with how it turned out.
+I also liked learning about Zola and I plan to add more features, such as a light mode toggle.</p>
+
+        </div>
+
+            </div>
+        <div class="pagination">
+            <div class="pagination__buttons"></div>
+        </div>
+    </div>
+
+    </div>
+
+    
+<div class="footer-emoticon", style="display: block; margin-bottom: 40px;">
+    
+        (-_q)
+    
+</div>
+<div class="footer-soc-icons", style="display: block;">
+   
+        <a
+        href="mailto:mberkey2@gmail.com"
+        class="social-link"
+        style="text-decoration: none;"
+        aria-label="Email"
+        target="_blank"
+        rel="noopener"
+        >
+            
+                <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: -4px;" width="20" height="20" fill="currentColor" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+            
+        </a>
+         | 
+    
+        <a
+        href="https:&#x2F;&#x2F;github.com&#x2F;mdberkey"
+        class="social-link"
+        style="text-decoration: none;"
+        aria-label="Github"
+        target="_blank"
+        rel="noopener"
+        >
+            
+                <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: -4px;" width="20" height="20" fill="currentColor" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+            
+        </a>
+         | 
+    
+        <a
+        href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;michael-berkey1&#x2F;"
+        class="social-link"
+        style="text-decoration: none;"
+        aria-label="Linkedin"
+        target="_blank"
+        rel="noopener"
+        >
+            
+                <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: -4px;" width="20" height="20" fill="currentColor" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+        </a>
+        
+    
+</div>
+<footer class="footer">
+    <div class="footer__inner">
+        <div class="copyright">
+            <span>© 
+    2025
+ Michael Berkey | Powered by <a href="https://www.getzola.org/">Zola</a></span>
+        </div>
+    </div>
+</footer>
+
+
+</div>
+</body>
+
+</html>

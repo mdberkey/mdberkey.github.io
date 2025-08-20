@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>mdberkey</title>
+    <link rel="self" type="application/atom+xml" href="https://mdberkey.github.io/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://mdberkey.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-04-29T00:00:00+00:00</updated>
+    <id>https://mdberkey.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Automating keyword extraction and ranking to enhance a resume</title>
+        <published>2025-04-29T00:00:00+00:00</published>
+        <updated>2025-04-29T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Michael Berkey
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://mdberkey.github.io/blog/automating-keyword-extraction-and-ranking-to-enhance-a-resume/"/>
+        <id>https://mdberkey.github.io/blog/automating-keyword-extraction-and-ranking-to-enhance-a-resume/</id>
+        
+        <content type="html" xml:base="https://mdberkey.github.io/blog/automating-keyword-extraction-and-ranking-to-enhance-a-resume/">&lt;ul&gt;
+&lt;li&gt;TL;DR I extracted keywords from job descriptions with &lt;a href=&quot;https:&#x2F;&#x2F;blog.google&#x2F;technology&#x2F;google-deepmind&#x2F;gemini-model-thinking-updates-march-2025&#x2F;&quot;&gt;Gemini&lt;&#x2F;a&gt; and created a Python script to rank them to enhance my friend&#x27;s resume.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I spent some time this past week helping a friend update their resume.
+For tech roles, it isn&#x27;t easy to pass the resume screen stage (as of 04&#x2F;25).
+Due to the large volume of applicants, resumes are filtered out by automated parsers which check for desirable keywords.
+Since these resume parsers are closed source and every company operates differently, finding the right keywords is a very inexact science, but that never stopped me from trying :).&lt;&#x2F;p&gt;
+&lt;p&gt;A solid strategy is to pull keywords from the job descriptions you are applying to, but this is time-consuming especially if you need to apply to 100+ roles.
+I decided to automate this somewhat and I outlined these steps:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Extract keywords from job postings.&lt;&#x2F;li&gt;
+&lt;li&gt;Rank the keywords based on how frequently they appear.&lt;&#x2F;li&gt;
+&lt;li&gt;Take the top X keywords and include them in the resume.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;I brainstormed possible programs for keyword extraction, but after doing some testing, it seems like modern LLMs are reasonably good at it. So I created this prompt:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;md&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-md &quot;&gt;&lt;code class=&quot;language-md&quot; data-lang=&quot;md&quot;&gt;&lt;span&gt;From the supplied job description, take all of the relevant keywords that an average ATS system will look for in resumes when choosing to move a candidate forward to the next round and put them in order from most to least impactful in this decision. Have your output be a numbered list with just the keywords and no paragraph at the top. Example:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;  1. keyword_1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;  2. keyword_2
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;  3. keyword_3
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;  Make sure to get ALL of the keywords. Here is the job description: 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;  &amp;lt;job &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;description&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I manually fed the prompt to &lt;a href=&quot;https:&#x2F;&#x2F;blog.google&#x2F;technology&#x2F;google-deepmind&#x2F;gemini-model-thinking-updates-march-2025&#x2F;&quot;&gt;Gemini 2.5&lt;&#x2F;a&gt;, copied the output to a file, added a line with the company name, and repeated for 10 job descriptions.
+I could have automated this by creating a web scraper that calls the Gemini API, but 10 was enough and I was lazy :P. Maybe I&#x27;ll come back and code it on a rainy day.&lt;&#x2F;p&gt;
+&lt;p&gt;The resulting file looked something like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;md&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-md &quot;&gt;&lt;code class=&quot;language-md&quot; data-lang=&quot;md&quot;&gt;&lt;span style=&quot;background-color:#4f5b66;color:#c0c5ce;&quot;&gt;---
+&lt;&#x2F;span&gt;&lt;span&gt;google
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;1. Software Engineer &#x2F; Platform Engineer
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;2. Rust
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;3. Go
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;4. C++
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5. Java
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;...
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I then wrote a Python script to parse and rank the keywords.
+Note that at the start, I added this regex &lt;code&gt;re.sub(r&quot;\(.*?\)&quot;, &quot;&quot;, line)&lt;&#x2F;code&gt; since Gemini liked to add unecessary abreviations wrapped in parentheses. Ex: &lt;code&gt;Service Oriented Architecture (SOA)&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The script then creates dictionaries for each company ranking (remember there is a list of keywords for each company&#x2F;job posting). It assigns each keyword a score and takes the largest one if there are duplicates.
+Finally, it combines the dictionaries by adding together the scores of duplicate keywords across company dicts and creates a file with the final ranking of each keyword.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;Python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-Python &quot;&gt;&lt;code class=&quot;language-Python&quot; data-lang=&quot;Python&quot;&gt;&lt;span&gt;    file_lines = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;open&lt;&#x2F;span&gt;&lt;span&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Keywords.md&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;r&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;readlines&lt;&#x2F;span&gt;&lt;span&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;    file_lines = [re.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;sub&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;r&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span&gt;*?&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\)&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&amp;quot;, line) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;line &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;file_lines]
+&lt;&#x2F;span&gt;&lt;span&gt;    file_lines = [line.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;strip&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;line &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;file_lines]
+&lt;&#x2F;span&gt;&lt;span&gt;    file_lines = [line &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;line &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;file_lines &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;line]
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    company_keywords = {}
+&lt;&#x2F;span&gt;&lt;span&gt;    curr_company = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;None
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# get keywords by company
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;i &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;range&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;(file_lines)):
+&lt;&#x2F;span&gt;&lt;span&gt;        prev, curr = file_lines[i-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;], file_lines[i]
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;prev == &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;---&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;:
+&lt;&#x2F;span&gt;&lt;span&gt;            curr_company = curr
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;curr_company not in company_keywords:
+&lt;&#x2F;span&gt;&lt;span&gt;                company_keywords[curr] = {}
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;continue
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;elif &lt;&#x2F;span&gt;&lt;span&gt;curr != &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;---&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; and curr_company:
+&lt;&#x2F;span&gt;&lt;span&gt;            num, string = curr.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;split&lt;&#x2F;span&gt;&lt;span&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;. &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;            score = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;100 &lt;&#x2F;span&gt;&lt;span&gt;- &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt;(num)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;string not in company_keywords[curr_company]:
+&lt;&#x2F;span&gt;&lt;span&gt;                company_keywords[curr_company][string] = score
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;elif &lt;&#x2F;span&gt;&lt;span&gt;score &amp;gt; company_keywords[curr_company][string]:
+&lt;&#x2F;span&gt;&lt;span&gt;                company_keywords[curr_company][string] = score
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# combine dicts
+&lt;&#x2F;span&gt;&lt;span&gt;    res = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Counter&lt;&#x2F;span&gt;&lt;span&gt;({})
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;k, d &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;company_keywords.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;items&lt;&#x2F;span&gt;&lt;span&gt;():
+&lt;&#x2F;span&gt;&lt;span&gt;        res += &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Counter&lt;&#x2F;span&gt;&lt;span&gt;(d)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;with &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;open&lt;&#x2F;span&gt;&lt;span&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;results.txt&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;w&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;as &lt;&#x2F;span&gt;&lt;span&gt;f:
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;k, d &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;sorted&lt;&#x2F;span&gt;&lt;span&gt;(res.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;items&lt;&#x2F;span&gt;&lt;span&gt;(), &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;key&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;lambda &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;x&lt;&#x2F;span&gt;&lt;span&gt;: x[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;], &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;reverse&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;True&lt;&#x2F;span&gt;&lt;span&gt;):
+&lt;&#x2F;span&gt;&lt;span&gt;            f.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;{k}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt; : &lt;&#x2F;span&gt;&lt;span&gt;{d}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here&#x27;s the top 10 keywords and their scores:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;Python : 1145
+&lt;&#x2F;span&gt;&lt;span&gt;Software Engineer : 1072
+&lt;&#x2F;span&gt;&lt;span&gt;Java : 1054
+&lt;&#x2F;span&gt;&lt;span&gt;Collaboration : 840
+&lt;&#x2F;span&gt;&lt;span&gt;Computer Science : 712
+&lt;&#x2F;span&gt;&lt;span&gt;Design : 699
+&lt;&#x2F;span&gt;&lt;span&gt;Problem Solving : 607
+&lt;&#x2F;span&gt;&lt;span&gt;C++ : 567
+&lt;&#x2F;span&gt;&lt;span&gt;Reliability : 547
+&lt;&#x2F;span&gt;&lt;span&gt;Automation : 544
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It would be hard to meaningfully test the effectiveness of these keywords, but based on my experience and the job descriptions I pulled from, they seem pretty good.
+Some good enhancements for the future would be the aforementioned web scraper and a more robust scoring system. Overall though, I&#x27;m glad I was able to help my friend and that whenever I need to update my resume, I can use this program.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>How and Why I made this website</title>
+        <published>2025-03-16T00:00:00+00:00</published>
+        <updated>2025-03-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Michael Berkey
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://mdberkey.github.io/blog/how-and-why-i-made-this-website/"/>
+        <id>https://mdberkey.github.io/blog/how-and-why-i-made-this-website/</id>
+        
+        <content type="html" xml:base="https://mdberkey.github.io/blog/how-and-why-i-made-this-website/">&lt;ul&gt;
+&lt;li&gt;TL;DR I made this website using Zola to discuss my work&#x2F;interests.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;People kept asking, so I thought I&#x27;d make my first post to answer their questions.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;why-make-a-personal-website&quot;&gt;Why make a personal website?&lt;&#x2F;h3&gt;
+&lt;p&gt;I wanted a place to showcase my work and post about my interests.
+I&#x27;ll do my best to keep the &lt;a href=&quot;https:&#x2F;&#x2F;mdberkey.github.io&#x2F;&quot;&gt;about me&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;mdberkey.github.io&#x2F;resume&#x2F;&quot;&gt;resume&lt;&#x2F;a&gt; pages up to date.
+I plan to make this blog mostly tech-focused, but I have many interests that will probably make their way into here (like my &lt;a href=&quot;https:&#x2F;&#x2F;letterboxd.com&#x2F;squidy_pete&#x2F;film&#x2F;das-boot&#x2F;&quot;&gt;love of WW2 movies&lt;&#x2F;a&gt;).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;how-did-you-make-this-website&quot;&gt;How did you make this website?&lt;&#x2F;h3&gt;
+&lt;p&gt;I chose &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;&quot;&gt;Zola&lt;&#x2F;a&gt; for the static site generator since it&#x27;s relatively simple and fast.
+Also &lt;a href=&quot;https:&#x2F;&#x2F;github.blog&#x2F;developer-skills&#x2F;programming-languages-and-frameworks&#x2F;why-rust-is-the-most-admired-language-among-developers&#x2F;&quot;&gt;Rust is cool&lt;&#x2F;a&gt; (⌐■_■).
+I love how easy it is to extend a theme to suit my needs.
+For example, I based my theme off of the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pawroman&#x2F;zola-theme-terminimal&quot;&gt;Terminimal theme&lt;&#x2F;a&gt; and to add more to the templates, I just needed to create one with the same name and a line like this at the top:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;html&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-html &quot;&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span&gt;{% extends &amp;quot;terminimal&#x2F;templates&#x2F;index.html&amp;quot; %}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I could then add any block I wanted to replace in this template.
+For example, this is how I added an emoticon variable and social media icons to the footer.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;html&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-html &quot;&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span&gt;{% block footer %}
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;div &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span&gt;=&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;footer-emoticon&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;, style&lt;&#x2F;span&gt;&lt;span&gt;=&amp;quot;display: block; margin-bottom: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;40px&lt;&#x2F;span&gt;&lt;span&gt;;&amp;quot;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    {% if page.extra and page.extra.emoticon is defined %}
+&lt;&#x2F;span&gt;&lt;span&gt;        {{ page.extra.emoticon }}
+&lt;&#x2F;span&gt;&lt;span&gt;    {% elif section.extra and section.extra.emoticon is defined %}
+&lt;&#x2F;span&gt;&lt;span&gt;        {{ section.extra.emoticon }}
+&lt;&#x2F;span&gt;&lt;span&gt;    {% else %}
+&lt;&#x2F;span&gt;&lt;span&gt;        {% block emoticon %}
+&lt;&#x2F;span&gt;&lt;span&gt;        (&amp;#39;_&amp;#39;)
+&lt;&#x2F;span&gt;&lt;span&gt;        {% endblock emoticon %}
+&lt;&#x2F;span&gt;&lt;span&gt;    {% endif %}
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;div&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;div &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span&gt;=&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;footer-soc-icons&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;, style&lt;&#x2F;span&gt;&lt;span&gt;=&amp;quot;display: block;&amp;quot;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;   {% for link in config.extra.social_links %}
+&lt;&#x2F;span&gt;&lt;span&gt;        &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;a
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;href&lt;&#x2F;span&gt;&lt;span&gt;=&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{{ link.url }}&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span&gt;=&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;social-link&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;style&lt;&#x2F;span&gt;&lt;span&gt;=&amp;quot;text-decoration: none;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;aria-label&lt;&#x2F;span&gt;&lt;span&gt;=&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{{ link.name | title }}&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;target&lt;&#x2F;span&gt;&lt;span&gt;=&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;_blank&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;rel&lt;&#x2F;span&gt;&lt;span&gt;=&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;noopener&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;        &amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;            ...
+&lt;&#x2F;span&gt;&lt;span&gt;        &amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;a&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        {% if not loop.last %} | {% endif %}
+&lt;&#x2F;span&gt;&lt;span&gt;    {% endfor %}
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;div&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;...
+&lt;&#x2F;span&gt;&lt;span&gt;{% endblock footer %}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mdberkey&#x2F;mdberkey.github.io&quot;&gt;Source code&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;For hosting, I chose &lt;a href=&quot;https:&#x2F;&#x2F;pages.github.com&#x2F;&quot;&gt;GitHub pages&lt;&#x2F;a&gt; since it&#x27;s free and easy to set up. Also, the Zola docs have a &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;documentation&#x2F;deployment&#x2F;github-pages&#x2F;&quot;&gt;nice guide&lt;&#x2F;a&gt; for setting this up.&lt;&#x2F;p&gt;
+&lt;p&gt;Overall, I enjoyed creating this site and I&#x27;m happy with how it turned out.
+I also liked learning about Zola and I plan to add more features, such as a light mode toggle.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
