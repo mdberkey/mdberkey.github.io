@@ -71,19 +71,22 @@ arranging judges, supervising contestants, etc.
 ### Technical Skills
 ---
 **Languages**:
-- Java, Python, JavaScript, Go, C, Bash
+- Java, Python, JavaScript, TypeScript, Golang, C, Bash
 
 **Frameworks and Libraries**:
-- Spring Boot, JUnit, OpenTelemetry, React, Pandas, Node, Flink, Kafka
+- Spring Boot, JUnit, OpenTelemetry, React, Pandas, Node, HTML/CSS, Kafka
 
 **Tools**: 
-- Git, Jenkins, Jira, AWS, Linux, Docker, SQL, NoSQL, REST, Databricks, Snowflake, PostgreSQL
+- Git, Jira, Unix, Linux, Docker, SQL, NoSQL, REST, Databricks, Kubernetes, PostgreSQL, MySQL
 
 **Concepts**:
-- Backend Development, Frontend Development, Fullstack Development, Software Engineering, Networking, Big Data, Machine Learning, Microservices, Infrastructure Engineering, DevOps, Automation, Agile
+- Backend Development, Fullstack Development, Data Structures, Algorithms, Distributed Systems, OOP, GUI, Networking, Big Data, Machine Learning, Microservices, Infrastructure, DevOps, Automation, Agile
+
+**AWS**:
+- ECS, DynamoDB, Lambda, RDS, IAM, VPC, SQS, SNS, CloudFormation
 
 **Certifications**: 
-- Amazon Web Services Certified Solutions Architect Associate (AWS SAA-CO3)
+- AWS Certified Solutions Architect Associate (AWS SAA-CO3)
 
 <br>
 
