@@ -16,15 +16,14 @@ taxonomies = [
     {name = "tags"},
 ]
 
-[markdown]
-highlight_code = true
+[markdown.highlighting]
+theme = "github-dark"
 
 [extra]
 menu_items = [
     {name = "about me", url = "$BASE_URL"},
     {name = "resume", url = "$BASE_URL/resume"},
     {name = "blog", url = "$BASE_URL/blog"},
-    {name = "archive", url = "$BASE_URL/archive"},
     {name = "feed", url = "$BASE_URL/atom.xml"}
 ]
 

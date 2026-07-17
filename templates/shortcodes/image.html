@@ -1,0 +1,12 @@
+{% set final_src = src %}
+
+{% if src is not starting_with("http") %}
+  
+  {% if src is starting_with("/") %}
+    {% set final_src = get_url(path=src) %}
+  
+  {% endif %}
+
+{% endif %}
+
+<img src="{{ final_src | safe }}"{% if alt %} alt="{{ alt }}"{% endif %} class="{% if position %}{{ position }}{% else -%} center {%- endif %}" {%- if style %} style="{{ style | safe }}" {%- endif %} decoding="async" loading="lazy"/>
