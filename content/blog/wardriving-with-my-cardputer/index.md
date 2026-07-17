@@ -15,7 +15,7 @@ I've added many expansion modules so far: An [IR emitter/receiver](https://shop.
 
 {{ row2(src1="cardputer_front.jpg", alt1="Front view for my cardputer.", src2="cardputer_back.jpg", alt2="Back view of my cardputer.") }}
 
-My favorite activity is to do some wardriving with the GPS module. For the unaware: wardriving is the practice of using a wireless device while moving to search for Wi-Fi networks and Bluetooth devices. A typical piece of Wardriving software will search for a network and then log the GPS location, which can be used to make a map of different networks. 
+My favorite activity is to do some [wardriving](https://en.wikipedia.org/wiki/Wardriving) with the GPS module. For the unaware: wardriving is the practice of using a wireless device while moving to search for Wi-Fi networks and Bluetooth devices. A typical piece of Wardriving software will search for a network and then log the GPS location, which can be used to make a map of different networks. 
 
 Why? Ethical wardrivers might be doing anything from OSINT investigations to security audits, while malicious wardrivers could be searching for vulnerable networks, for example.
 
