@@ -1,6 +1,6 @@
 +++
 title = "Powering off TVs with my Cardputer"
-date = 2026-07-26
+date = 2026-07-30
 
 [taxonomies]
 tags = ["cardputer", "hacking"]
