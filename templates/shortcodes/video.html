@@ -1,0 +1,12 @@
+<figure style="margin: 2rem 0;">
+    <video width="100%" controls {% if poster %}poster="{{ poster }}"{% endif %}>
+        <source src="{{ src }}" type="video/{{ type | default(value="mp4") }}">
+        Your browser does not support HTML5 video.
+    </video>
+    
+    {% if desc %}
+        <figcaption style="margin-top: 0.5rem; font-size: 0.9em; opacity: 0.8; text-align: center;">
+            {{ desc }}
+        </figcaption>
+    {% endif %}
+</figure>
