@@ -3,7 +3,7 @@ title = "Wardriving with my Cardputer"
 date = 2026-07-16
 
 [taxonomies]
-tags = ["cardputer", "hacking"]
+tags = ["cardputer", "ethical-hacking"]
 
 [extra]
 emoticon = ">:}"

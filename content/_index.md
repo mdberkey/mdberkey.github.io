@@ -1,5 +1,5 @@
 +++
-title = "Michael Berkey"
+title = "Michael D. Berkey"
 [extra]
 emoticon = "(¬_¬)ﾉ"
 +++
@@ -10,7 +10,7 @@ emoticon = "(¬_¬)ﾉ"
 
 Hi, I'm Michael (mdberkey). Currently, I'm working as a software engineer at [FIS Amount](https://www.linkedin.com/company/amount/). Before that, I was a developer at [Capital One](https://www.capitalone.com/tech/) for ~2 years. And before that, I graduated from the [University of Wisconin-Madison](https://www.wisc.edu/) with a B.S. in Computer Science. During college, you could find me tinkering with code in the [Undergraduate Projects Lab](https://www.upl.cs.wisc.edu/) or creating video games for [primate research](https://psycnet.apa.org/record/2025-21970-001) (yes, really). 
 
-I enjoy solving complex technical problems, whether it's developing scalable systems to process 1 million+ records daily or automating the uploading of my video game replays.
+I enjoy solving complex technical problems, whether it's developing scalable systems to process 1 million+ records/day or automating my home server.
 
 Outside of software development, I love to ski, rock climb, analyze movies, and play video games.
 

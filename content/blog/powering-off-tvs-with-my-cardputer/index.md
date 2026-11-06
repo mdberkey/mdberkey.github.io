@@ -3,7 +3,7 @@ title = "Powering off TVs with my Cardputer"
 date = 2026-07-30
 
 [taxonomies]
-tags = ["cardputer", "hacking"]
+tags = ["cardputer", "ethical-hacking"]
 
 [extra]
 emoticon = "[X_X]"

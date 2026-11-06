@@ -1,10 +1,11 @@
 +++
-title = "Resume"
+title = "Resume *Last updated 04/13/2025*"
 path = "resume"
 template = "resume.html"
 [extra]
 emoticon = "(⌐▨_▨)"
 +++
+
 
 ### Education
 ---
@@ -96,4 +97,3 @@ arranging judges, supervising contestants, etc.
 
 <br>
 
-Last content update: 04/13/2025
