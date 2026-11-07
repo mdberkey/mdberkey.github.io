@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>mdberkey</title>
+    <link rel="self" type="application/atom+xml" href="https://mdberkey.github.io/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://mdberkey.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-07-30T00:00:00+00:00</updated>
+    <id>https://mdberkey.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Powering off TVs with my Cardputer</title>
+        <published>2026-07-30T00:00:00+00:00</published>
+        <updated>2026-07-30T00:00:00+00:00</updated>
+        
+        <author>
+          <name>Michael Berkey</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://mdberkey.github.io/blog/powering-off-tvs-with-my-cardputer/"/>
+        <id>https://mdberkey.github.io/blog/powering-off-tvs-with-my-cardputer/</id>
+        
+        <content type="html" xml:base="https://mdberkey.github.io/blog/powering-off-tvs-with-my-cardputer/">&lt;p&gt;I&#39;ve been having fun exploring the &lt;a rel=&quot;external&quot; href=&quot;https://wiki.bruce.computer/features/ir/&quot;&gt;infrared features&lt;/a&gt; of &lt;a rel=&quot;external&quot; href=&quot;https://bruce.computer/&quot;&gt;Bruce firmware&lt;/a&gt; on my &lt;a rel=&quot;external&quot; href=&quot;https://shop.m5stack.com/products/m5stack-cardputer-adv-version-esp32-s3&quot;&gt;cardputer&lt;/a&gt;. My favorite is the TV-B-Gone function, which spams 100+ &lt;code&gt;power off&lt;/code&gt; signals used by common TVs and displays.&lt;/p&gt;
+&lt;figure style=&quot;margin: 2rem 0;&quot;&gt;
+&lt;video width=&quot;100%&quot; controls&gt;
+&lt;source src=&quot;tvbgone.mp4&quot; type=&quot;video/mp4&quot;&gt;
+Your browser does not support HTML5 video.
+&lt;/video&gt;
+&lt;figcaption style=&quot;margin-top: 0.5rem; font-size: 0.9em; opacity: 0.8; text-align: center;&quot;&gt;Turning off 3 TVs with my cardputer.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;A standalone cardputer has a built-in IR blaster, but it&#39;s incredibly weak. I have to point it directly at my TV&#39;s receiver from ~2 ft away for it to work. I bought this &lt;a rel=&quot;external&quot; href=&quot;https://shop.m5stack.com/products/ir-unit&quot;&gt;IR emitter &amp;amp; receiver module&lt;/a&gt;, but the emitter only has ~3 ft of range.&lt;/p&gt;
+&lt;p&gt;I wanted to use my cardputer like a typical TV remote, so I bought this &lt;a rel=&quot;external&quot; href=&quot;https://www.aliexpress.us/item/3256807806520912.html?gatewayAdapt=glo2usa4itemAdapt&quot;&gt;3W IR transmitter&lt;/a&gt;. After some testing, it has a much better range of ~30 ft. I did have to use some duct tape to attach it to my cardputer and keep the wires compact.&lt;/p&gt;
+&lt;img src=&quot;IR_emitter.png&quot; alt=&quot;My 5V IR emitter attached to my cardputer.&quot; class=&quot;center&quot; style=&quot;border-radius: 8px;&quot; decoding=&quot;async&quot; loading=&quot;lazy&quot;/&gt;
+&lt;p&gt;Bruce also has this cool jamming feature which can essentially &quot;blind&quot; an IR receiver, causing it not to register signals from other devices. I&#39;ve also used the IR receiver on my expansion module to read and save incoming signals, allowing me to clone TV remotes.&lt;/p&gt;
+&lt;p&gt;Looking forward to testing this on other devices with IR receivers such as LED strips, AC units, etc. Also, fun fact: most cameras can &quot;see&quot; IR light, and my phone&#39;s camera has been very useful for debugging.&lt;/p&gt;
+&lt;img src=&quot;IR_blasting.gif&quot; alt=&quot;My IR emitter visibly emitting.&quot; class=&quot;center&quot; style=&quot;border-radius: 8px;&quot; decoding=&quot;async&quot; loading=&quot;lazy&quot;/&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Wardriving with my Cardputer</title>
+        <published>2026-07-16T00:00:00+00:00</published>
+        <updated>2026-07-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>Michael Berkey</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://mdberkey.github.io/blog/wardriving-with-my-cardputer/"/>
+        <id>https://mdberkey.github.io/blog/wardriving-with-my-cardputer/</id>
+        
+        <content type="html" xml:base="https://mdberkey.github.io/blog/wardriving-with-my-cardputer/">&lt;p&gt;My girlfriend gifted me a &lt;a rel=&quot;external&quot; href=&quot;https://shop.m5stack.com/products/m5stack-cardputer-adv-version-esp32-s3&quot;&gt;Cardputer Adv&lt;/a&gt; for my birthday, and I&#39;ve had a lot of fun tinkering with it. I wanted a compact device to learn some white hat hacking. This made me want the &lt;a rel=&quot;external&quot; href=&quot;https://flipper.net/&quot;&gt;Flipper Zero&lt;/a&gt;, until I saw that the base unit was $200! O_O. So I asked for a $30 Cardputer instead, and it&#39;s been great.&lt;/p&gt;
+&lt;p&gt;I&#39;ve added many expansion modules so far: An &lt;a rel=&quot;external&quot; href=&quot;https://shop.m5stack.com/products/ir-unit?variant=16804756979802&quot;&gt;IR emitter/receiver&lt;/a&gt;, an &lt;a rel=&quot;external&quot; href=&quot;https://shop.m5stack.com/products/rfid-unit-2-ws1850s?variant=40753463885996&quot;&gt;RFID module&lt;/a&gt;, a &lt;a rel=&quot;external&quot; href=&quot;https://www.pingequa.com/products/cardputer-adv-hydra-rf-424&quot;&gt;CC1101 + nRF24L01 cap&lt;/a&gt;, and a &lt;a rel=&quot;external&quot; href=&quot;https://shop.m5stack.com/products/gps-bds-unit-v1-1-at6668?variant=45727253692673&quot;&gt;GPS module&lt;/a&gt;. For the firmware, I use &lt;a rel=&quot;external&quot; href=&quot;https://bmorcelli.github.io/Launcher/&quot;&gt;Launcher&lt;/a&gt; and primarily &lt;a rel=&quot;external&quot; href=&quot;https://bruce.computer/&quot;&gt;Bruce&lt;/a&gt;, although there are a few bugs depending on the version.&lt;/p&gt;
+&lt;div style=&quot;display: flex; gap: 20px; justify-content: center; align-items: center; margin-bottom: 20px;&quot;&gt;
+  &lt;img src=&quot;cardputer_front.jpg&quot; alt=&quot;Front view for my cardputer.&quot; style=&quot;width: 45%; border-radius: 8px;&quot; loading=&quot;lazy&quot;&gt;
+  &lt;img src=&quot;cardputer_back.jpg&quot; alt=&quot;Back view of my cardputer.&quot; style=&quot;width: 45%; border-radius: 8px;&quot; loading=&quot;lazy&quot;&gt;
+&lt;/div&gt;
+&lt;p&gt;My favorite activity is to do some &lt;a rel=&quot;external&quot; href=&quot;https://en.wikipedia.org/wiki/Wardriving&quot;&gt;wardriving&lt;/a&gt; with the GPS module. For the unaware: wardriving is the practice of using a wireless device while moving to search for Wi-Fi networks and Bluetooth devices. A typical piece of Wardriving software will search for a network and then log the GPS location, which can be used to make a map of different networks.&lt;/p&gt;
+&lt;p&gt;Why? Ethical wardrivers might be doing anything from OSINT investigations to security audits, while malicious wardrivers could be searching for vulnerable networks, for example.&lt;/p&gt;
+&lt;p&gt;For me, it&#39;s just interesting and fun to map out all of the networks in my area. I do live in the dense city of Chicago, but I still find it crazy just how many networks are around me, ~18k so far! And I&#39;ve only been doing this for about a month. Here is my latest map as of making this post:&lt;/p&gt;
+&lt;img src=&quot;wardriving_map.png&quot; alt=&quot;My wardriving map.&quot; class=&quot;center&quot; style=&quot;border-radius: 8px;&quot; decoding=&quot;async&quot; loading=&quot;lazy&quot;/&gt;
+&lt;p&gt;You can probably guess roughly where I live. I also enjoy finding funny SSIDs. Here are my top 3:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Fist my Bump&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;WhoWhatWhereWhenWhyFi&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;unoriginal network name&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Can&#39;t wait to see what other shenanigans I get up to with my cardputer.&lt;/p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Automating keyword extraction and ranking to enhance a resume</title>
+        <published>2025-04-29T00:00:00+00:00</published>
+        <updated>2025-04-29T00:00:00+00:00</updated>
+        
+        <author>
+          <name>Michael Berkey</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://mdberkey.github.io/blog/automating-keyword-extraction-and-ranking-to-enhance-a-resume/"/>
+        <id>https://mdberkey.github.io/blog/automating-keyword-extraction-and-ranking-to-enhance-a-resume/</id>
+        
+        <content type="html" xml:base="https://mdberkey.github.io/blog/automating-keyword-extraction-and-ranking-to-enhance-a-resume/">&lt;ul&gt;
+&lt;li&gt;TL;DR I extracted keywords from job descriptions with &lt;a rel=&quot;external&quot; href=&quot;https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/&quot;&gt;Gemini&lt;/a&gt; and created a Python script to rank them to enhance my friend&#39;s resume.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I spent some time this past week helping a friend update their resume.
+For tech roles, it isn&#39;t easy to pass the resume screen stage (as of 04/25).
+Due to the large volume of applicants, resumes are filtered out by automated parsers which check for desirable keywords.
+Since these resume parsers are closed source and every company operates differently, finding the right keywords is a very inexact science, but that never stopped me from trying :).&lt;/p&gt;
+&lt;p&gt;A solid strategy is to pull keywords from the job descriptions you are applying to, but this is time-consuming especially if you need to apply to 100+ roles.
+I decided to automate this somewhat and I outlined these steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Extract keywords from job postings.&lt;/li&gt;
+&lt;li&gt;Rank the keywords based on how frequently they appear.&lt;/li&gt;
+&lt;li&gt;Take the top X keywords and include them in the resume.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I brainstormed possible programs for keyword extraction, but after doing some testing, it seems like modern LLMs are reasonably good at it. So I created this prompt:&lt;/p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot; &gt;&lt;code data-lang=&quot;markdown&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;From the supplied job description, take all of the relevant keywords that an average ATS system will look for in resumes when choosing to move a candidate forward to the next round and put them in order from most to least impactful in this decision. Have your output be a numbered list with just the keywords and no paragraph at the top. Example:&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #FFAB70;&quot;&gt;  1.&lt;/span&gt;&lt;span&gt; keyword_1&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #FFAB70;&quot;&gt;  2.&lt;/span&gt;&lt;span&gt; keyword_2&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #FFAB70;&quot;&gt;  3.&lt;/span&gt;&lt;span&gt; keyword_3&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  Make sure to get ALL of the keywords. Here is the job description: &lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  &amp;lt;&lt;/span&gt;&lt;span style=&quot;color: #85E89D;&quot;&gt;job&lt;/span&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt; description&lt;/span&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I manually fed the prompt to &lt;a rel=&quot;external&quot; href=&quot;https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/&quot;&gt;Gemini 2.5&lt;/a&gt;, copied the output to a file, added a line with the company name, and repeated for 10 job descriptions.
+I could have automated this by creating a web scraper that calls the Gemini API, but 10 was enough and I was lazy :P. Maybe I&#39;ll come back and code it on a rainy day.&lt;/p&gt;
+&lt;p&gt;The resulting file looked something like this:&lt;/p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot; &gt;&lt;code data-lang=&quot;markdown&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;---&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;google&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;1. Software Engineer / Platform Engineer&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;2. Rust&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;3. Go&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;4. C++&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;5. Java&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;...&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I then wrote a Python script to parse and rank the keywords.
+Note that at the start, I added this regex &lt;code&gt;re.sub(r&quot;\(.*?\)&quot;, &quot;&quot;, line)&lt;/code&gt; since Gemini liked to add unecessary abreviations wrapped in parentheses. Ex: &lt;code&gt;Service Oriented Architecture (SOA)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The script then creates dictionaries for each company ranking (remember there is a list of keywords for each company/job posting). It assigns each keyword a score and takes the largest one if there are duplicates.
+Finally, it combines the dictionaries by adding together the scores of duplicate keywords across company dicts and creates a file with the final ranking of each keyword.&lt;/p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot; &gt;&lt;code data-lang=&quot;python&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    file_lines&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; open&lt;/span&gt;&lt;span&gt;(&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;Keywords.md&amp;quot;&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;r&amp;quot;&lt;/span&gt;&lt;span&gt;).readlines()&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    file_lines&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span&gt; [re.sub(&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;r&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #85E89D;font-weight: bold;&quot;&gt;\(&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;*?&lt;/span&gt;&lt;span style=&quot;color: #85E89D;font-weight: bold;&quot;&gt;\)&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;&amp;quot;&lt;/span&gt;&lt;span&gt;, line)&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; for&lt;/span&gt;&lt;span&gt; line&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; in&lt;/span&gt;&lt;span&gt; file_lines]&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    file_lines&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span&gt; [line.strip()&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; for&lt;/span&gt;&lt;span&gt; line&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; in&lt;/span&gt;&lt;span&gt; file_lines]&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    file_lines&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span&gt; [line&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; for&lt;/span&gt;&lt;span&gt; line&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; in&lt;/span&gt;&lt;span&gt; file_lines&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; if&lt;/span&gt;&lt;span&gt; line]&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    company_keywords&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span&gt; {}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    curr_company&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; None&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #6A737D;&quot;&gt;    # get keywords by company&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;    for&lt;/span&gt;&lt;span&gt; i&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; in&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; range&lt;/span&gt;&lt;span&gt;(&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;1&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; len&lt;/span&gt;&lt;span&gt;(file_lines)):&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        prev, curr&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span&gt; file_lines[i&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;-&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;1&lt;/span&gt;&lt;span&gt;], file_lines[i]&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;        if&lt;/span&gt;&lt;span&gt; prev&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; ==&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;---&amp;quot;&lt;/span&gt;&lt;span&gt;:&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;            curr_company&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span&gt; curr&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;            if&lt;/span&gt;&lt;span&gt; curr_company&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; not in&lt;/span&gt;&lt;span&gt; company_keywords:&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;                company_keywords[curr]&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span&gt; {}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;            continue&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;        elif&lt;/span&gt;&lt;span&gt; curr&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; !=&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;---&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; and&lt;/span&gt;&lt;span&gt; curr_company:&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;            num, string&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span&gt; curr.split(&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;. &amp;quot;&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; 1&lt;/span&gt;&lt;span&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;            score&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; 100&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; -&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; int&lt;/span&gt;&lt;span&gt;(num)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;            if&lt;/span&gt;&lt;span&gt; string&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; not in&lt;/span&gt;&lt;span&gt; company_keywords[curr_company]:&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;                company_keywords[curr_company][string]&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span&gt; score&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;            elif&lt;/span&gt;&lt;span&gt; score&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; &amp;gt;&lt;/span&gt;&lt;span&gt; company_keywords[curr_company][string]:&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;                company_keywords[curr_company][string]&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span&gt; score&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #6A737D;&quot;&gt;    # combine dicts&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    res&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;/span&gt;&lt;span&gt; Counter({})&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;    for&lt;/span&gt;&lt;span&gt; k, d&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; in&lt;/span&gt;&lt;span&gt; company_keywords.items():&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        res&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; +=&lt;/span&gt;&lt;span&gt; Counter(d)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;    with&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; open&lt;/span&gt;&lt;span&gt;(&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;results.txt&amp;quot;&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;w&amp;quot;&lt;/span&gt;&lt;span&gt;)&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; as&lt;/span&gt;&lt;span&gt; f:&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;        for&lt;/span&gt;&lt;span&gt; k, d&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; in&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; sorted&lt;/span&gt;&lt;span&gt;(res.items(),&lt;/span&gt;&lt;span style=&quot;color: #FFAB70;&quot;&gt; key&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;=lambda&lt;/span&gt;&lt;span&gt; x: x[&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;1&lt;/span&gt;&lt;span&gt;],&lt;/span&gt;&lt;span style=&quot;color: #FFAB70;&quot;&gt; reverse&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;True&lt;/span&gt;&lt;span&gt;):&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;            f.write(&lt;/span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;{&lt;/span&gt;&lt;span&gt;k&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; : &lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;{&lt;/span&gt;&lt;span&gt;d&lt;/span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;}\n&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here&#39;s the top 10 keywords and their scores:&lt;/p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot; &gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Python : 1145&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Software Engineer : 1072&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Java : 1054&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Collaboration : 840&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Computer Science : 712&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Design : 699&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Problem Solving : 607&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;C++ : 567&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Reliability : 547&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Automation : 544&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It would be hard to meaningfully test the effectiveness of these keywords, but based on my experience and the job descriptions I pulled from, they seem pretty good.
+Some good enhancements for the future would be the aforementioned web scraper and a more robust scoring system. Overall though, I&#39;m glad I was able to help my friend and that whenever I need to update my resume, I can use this program.&lt;/p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>How and Why I made this website</title>
+        <published>2025-03-16T00:00:00+00:00</published>
+        <updated>2025-03-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>Michael Berkey</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://mdberkey.github.io/blog/how-and-why-i-made-this-website/"/>
+        <id>https://mdberkey.github.io/blog/how-and-why-i-made-this-website/</id>
+        
+        <content type="html" xml:base="https://mdberkey.github.io/blog/how-and-why-i-made-this-website/">&lt;ul&gt;
+&lt;li&gt;TL;DR I made this website using Zola to discuss my work/interests.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;People kept asking, so I thought I&#39;d make my first post to answer their questions.&lt;/p&gt;
+&lt;h3 id=&quot;why-make-a-personal-website&quot;&gt;Why make a personal website?&lt;/h3&gt;
+&lt;p&gt;I wanted a place to showcase my work and post about my interests.
+I&#39;ll do my best to keep the &lt;a rel=&quot;external&quot; href=&quot;https://mdberkey.github.io/&quot;&gt;about me&lt;/a&gt; and &lt;a rel=&quot;external&quot; href=&quot;https://mdberkey.github.io/resume/&quot;&gt;resume&lt;/a&gt; pages up to date.
+I plan to make this blog mostly tech-focused, but I have many interests that will probably make their way into here (like my &lt;a rel=&quot;external&quot; href=&quot;https://letterboxd.com/squidy_pete/film/das-boot/&quot;&gt;love of WW2 movies&lt;/a&gt;).&lt;/p&gt;
+&lt;h3 id=&quot;how-did-you-make-this-website&quot;&gt;How did you make this website?&lt;/h3&gt;
+&lt;p&gt;I chose &lt;a rel=&quot;external&quot; href=&quot;https://www.getzola.org/&quot;&gt;Zola&lt;/a&gt; for the static site generator since it&#39;s relatively simple and fast.
+Also &lt;a rel=&quot;external&quot; href=&quot;https://github.blog/developer-skills/programming-languages-and-frameworks/why-rust-is-the-most-admired-language-among-developers/&quot;&gt;Rust is cool&lt;/a&gt; (⌐■_■).
+I love how easy it is to extend a theme to suit my needs.
+For example, I based my theme off of the &lt;a rel=&quot;external&quot; href=&quot;https://github.com/pawroman/zola-theme-terminimal&quot;&gt;Terminimal theme&lt;/a&gt; and to add more to the templates, I just needed to create one with the same name and a line like this at the top:&lt;/p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot; &gt;&lt;code data-lang=&quot;html&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;{% extends &amp;quot;terminimal/templates/index.html&amp;quot; %}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I could then add any block I wanted to replace in this template.
+For example, this is how I added an emoticon variable and social media icons to the footer.&lt;/p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot; &gt;&lt;code data-lang=&quot;html&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;{% block footer %}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;&amp;lt;&lt;/span&gt;&lt;span style=&quot;color: #85E89D;&quot;&gt;div&lt;/span&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt; class&lt;/span&gt;&lt;span&gt;=&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;footer-emoticon&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;, style&lt;/span&gt;&lt;span&gt;=&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;display: block; margin-bottom: 40px;&amp;quot;&lt;/span&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    {% if page.extra and page.extra.emoticon is defined %}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        {{ page.extra.emoticon }}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    {% elif section.extra and section.extra.emoticon is defined %}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        {{ section.extra.emoticon }}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    {% else %}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        {% block emoticon %}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        (&amp;#39;_&amp;#39;)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        {% endblock emoticon %}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    {% endif %}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;&amp;lt;/&lt;/span&gt;&lt;span style=&quot;color: #85E89D;&quot;&gt;div&lt;/span&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;&amp;lt;&lt;/span&gt;&lt;span style=&quot;color: #85E89D;&quot;&gt;div&lt;/span&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt; class&lt;/span&gt;&lt;span&gt;=&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;footer-soc-icons&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;, style&lt;/span&gt;&lt;span&gt;=&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;display: block;&amp;quot;&lt;/span&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;   {% for link in config.extra.social_links %}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        &amp;lt;&lt;/span&gt;&lt;span style=&quot;color: #85E89D;&quot;&gt;a&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;        href&lt;/span&gt;&lt;span&gt;=&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;{{ link.url }}&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;        class&lt;/span&gt;&lt;span&gt;=&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;social-link&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;        style&lt;/span&gt;&lt;span&gt;=&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;text-decoration: none;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;        aria-label&lt;/span&gt;&lt;span&gt;=&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;{{ link.name | title }}&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;        target&lt;/span&gt;&lt;span&gt;=&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;_blank&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;        rel&lt;/span&gt;&lt;span&gt;=&lt;/span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;noopener&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        &amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;            ...&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        &amp;lt;/&lt;/span&gt;&lt;span style=&quot;color: #85E89D;&quot;&gt;a&lt;/span&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        {% if not loop.last %} | {% endif %}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    {% endfor %}&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;&amp;lt;/&lt;/span&gt;&lt;span style=&quot;color: #85E89D;&quot;&gt;div&lt;/span&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;...&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;{% endblock footer %}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;https://github.com/mdberkey/mdberkey.github.io&quot;&gt;Source code&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For hosting, I chose &lt;a rel=&quot;external&quot; href=&quot;https://pages.github.com/&quot;&gt;GitHub pages&lt;/a&gt; since it&#39;s free and easy to set up. Also, the Zola docs have a &lt;a rel=&quot;external&quot; href=&quot;https://www.getzola.org/documentation/deployment/github-pages/&quot;&gt;nice guide&lt;/a&gt; for setting this up.&lt;/p&gt;
+&lt;p&gt;Overall, I enjoyed creating this site and I&#39;m happy with how it turned out.
+I also liked learning about Zola and I plan to add more features, such as a light mode toggle.&lt;/p&gt;
+</content>
+        
+    </entry>
+</feed>
