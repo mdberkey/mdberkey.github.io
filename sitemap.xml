@@ -19,6 +19,10 @@
         <lastmod>2026-07-30</lastmod>
     </url>
     <url>
+        <loc>https://mdberkey.github.io/blog/thoughts-on-riemann-hypothesis-proof/</loc>
+        <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
         <loc>https://mdberkey.github.io/blog/wardriving-with-my-cardputer/</loc>
         <lastmod>2026-07-16</lastmod>
     </url>
@@ -29,6 +33,9 @@
         <loc>https://mdberkey.github.io/tags/</loc>
     </url>
     <url>
+        <loc>https://mdberkey.github.io/tags/ai/</loc>
+    </url>
+    <url>
         <loc>https://mdberkey.github.io/tags/cardputer/</loc>
     </url>
     <url>
@@ -36,6 +43,12 @@
     </url>
     <url>
         <loc>https://mdberkey.github.io/tags/llm/</loc>
+    </url>
+    <url>
+        <loc>https://mdberkey.github.io/tags/math/</loc>
+    </url>
+    <url>
+        <loc>https://mdberkey.github.io/tags/news/</loc>
     </url>
     <url>
         <loc>https://mdberkey.github.io/tags/python/</loc>
