@@ -1,0 +1,16 @@
+{% component youtube(id, title = "YouTube video", desc = "", start = "") %}
+<figure style="display: block; width: 100%; margin: 2rem 0;">
+<div style="position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 8px;">
+<iframe
+  src="https://www.youtube-nocookie.com/embed/{{ id }}{% if start %}?start={{ start }}{% endif %}"
+  title="{{ title }}"
+  style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  loading="lazy"
+  allowfullscreen>
+</iframe>
+</div>
+{% if desc %}<figcaption style="margin-top: 0.5rem; font-size: 0.9em; opacity: 0.8; text-align: center;">{{ desc }}</figcaption>{% endif %}
+</figure>
+{% endcomponent youtube %}
