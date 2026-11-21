@@ -1,6 +1,18 @@
-{% component row2(src1, src2, alt1 = "", alt2 = "") %}
-<div style="display: flex; gap: 20px; justify-content: center; align-items: center; margin-bottom: 20px;">
-  <img src="{{ src1 }}" alt="{{ alt1 }}" style="width: 45%; border-radius: 8px;" loading="lazy">
-  <img src="{{ src2 }}" alt="{{ alt2 }}" style="width: 45%; border-radius: 8px;" loading="lazy">
+{% component row2(src1, src2, alt1 = "", alt2 = "", ratio = "", width = "", margin = "") %}
+{% set final_src1 = src1 %}
+{% if src1 is not starting_with(pat="http") %}
+  {% if src1 is starting_with(pat="/") %}
+    {% set final_src1 = get_url(path=src1) %}
+  {% endif %}
+{% endif %}
+{% set final_src2 = src2 %}
+{% if src2 is not starting_with(pat="http") %}
+  {% if src2 is starting_with(pat="/") %}
+    {% set final_src2 = get_url(path=src2) %}
+  {% endif %}
+{% endif %}
+<div class="row2"{% if width or margin %} style="{% if width %}--row2-width: {{ width }};{% endif %}{% if margin %} margin: {{ margin }};{% endif %}"{% endif %}>
+  <img src="{{ final_src1 | safe }}" alt="{{ alt1 }}"{% if ratio %} style="aspect-ratio: {{ ratio }};"{% endif %} decoding="async" loading="lazy">
+  <img src="{{ final_src2 | safe }}" alt="{{ alt2 }}"{% if ratio %} style="aspect-ratio: {{ ratio }};"{% endif %} decoding="async" loading="lazy">
 </div>
 {% endcomponent row2 %}
