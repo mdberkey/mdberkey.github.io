@@ -1,0 +1,282 @@
+// Comment widget styles for the blog-comments service. The service ships the
+// same rules for its standalone thread page; this copy is scoped to the
+// embedded section and mapped onto the blog palette.
+
+#comments {
+  --comments-bg: var(--background);
+  --comments-fg: var(--color);
+  --comments-muted: var(--accent-alpha-70);
+  --comments-line: var(--border-color);
+  --comments-accent: var(--accent);
+  --comments-error: #f08a8a;
+  --comments-field: transparent;
+
+  margin: 0 0 40px;
+
+  .comments-header {
+    border-bottom: 1px solid var(--comments-line);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .comments-title {
+    margin: 0;
+    font-size: 1.3rem;
+    letter-spacing: 0.01em;
+  }
+
+  .comments-subject {
+    margin: 0.25rem 0 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.8rem;
+    color: var(--comments-muted);
+    overflow-wrap: anywhere;
+  }
+
+  .comments-heading {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .comments-count {
+    margin-left: 0.2rem;
+    font-weight: 400;
+    font-size: 0.85em;
+    color: var(--comments-muted);
+  }
+
+  .comments-empty {
+    color: var(--comments-muted);
+    font-size: 0.95rem;
+  }
+
+  .comments-notice {
+    margin: 0 0 1rem;
+    padding: 0.5rem 0.75rem;
+    border-left: 3px solid var(--comments-accent);
+    color: var(--comments-muted);
+    font-size: 0.9rem;
+  }
+
+  .comment-error {
+    color: var(--comments-error);
+    font-size: 0.85rem;
+    margin: 0.2rem 0 0;
+  }
+
+  .comments-error-general {
+    margin: 0 0 1rem;
+    padding: 0.4rem 0.75rem;
+    border-left: 3px solid var(--comments-error);
+  }
+
+  .comment-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .comment {
+    margin: 0 0 1.25rem;
+  }
+
+  .comment.depth-1 {
+    margin-left: 0.7rem;
+  }
+  .comment.depth-2 {
+    margin-left: 1.4rem;
+  }
+  .comment.depth-3 {
+    margin-left: 2.1rem;
+  }
+  .comment.depth-4 {
+    margin-left: 2.8rem;
+  }
+  .comment.depth-5 {
+    margin-left: 3.3rem;
+  }
+  .comment.depth-6 {
+    margin-left: 3.6rem;
+  }
+  .comment.depth-7,
+  .comment.depth-8 {
+    margin-left: 4rem;
+  }
+
+  .comment.depth-1,
+  .comment.depth-2,
+  .comment.depth-3,
+  .comment.depth-4,
+  .comment.depth-5,
+  .comment.depth-6,
+  .comment.depth-7,
+  .comment.depth-8 {
+    border-left: 1px solid var(--comments-line);
+    padding-left: 0.85rem;
+  }
+
+  .comment-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.15rem 0.6rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .comment-author {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .comment-time {
+    color: var(--comments-muted);
+    font-size: 0.78rem;
+    text-decoration: none;
+  }
+
+  .comment-time:hover {
+    text-decoration: underline;
+  }
+
+  .comment-body {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .comment-body a {
+    color: var(--comments-accent);
+  }
+
+  .comment-actions {
+    margin-top: 0.15rem;
+  }
+
+  .comment-reply {
+    color: var(--comments-muted);
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+
+  .comment-reply:hover {
+    color: var(--comments-accent);
+    text-decoration: underline;
+  }
+
+  .comment-deleted {
+    opacity: 0.6;
+  }
+
+  .comment-deleted .comment-author {
+    font-style: italic;
+  }
+
+  .comment-form {
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px dashed var(--comments-line);
+  }
+
+  .comment-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .comment-field label {
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    color: var(--comments-muted);
+  }
+
+  .comment-field input,
+  .comment-field textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.55rem 0.65rem;
+    // The blog's --border-color is only 10% ink; fields need a stronger edge.
+    border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+    border-radius: 6px;
+    background: var(--comments-field);
+    color: var(--comments-fg);
+    font: inherit;
+    // 16px minimum stops iOS from zooming the page on focus.
+    font-size: max(16px, 1rem);
+  }
+
+  .comment-field textarea {
+    min-height: 7rem;
+    resize: vertical;
+  }
+
+  .comment-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .comment-replying {
+    margin: 0;
+    color: var(--comments-muted);
+    font-size: 0.85rem;
+  }
+
+  .comment-replying a {
+    color: var(--comments-accent);
+  }
+
+  .comment-form button {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--comments-fg);
+    border-radius: 6px;
+    background: var(--comments-fg);
+    color: var(--comments-bg);
+    font: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+
+  .comment-form button:hover {
+    opacity: 0.85;
+  }
+
+  .comments-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .comments-honeypot[hidden] {
+    display: none;
+  }
+
+  @media (max-width: 30rem) {
+    .comment.depth-1 {
+      margin-left: 0.4rem;
+    }
+    .comment.depth-2 {
+      margin-left: 0.8rem;
+    }
+    .comment.depth-3 {
+      margin-left: 1.2rem;
+    }
+    .comment.depth-4 {
+      margin-left: 1.6rem;
+    }
+    .comment.depth-5 {
+      margin-left: 2rem;
+    }
+    .comment.depth-6 {
+      margin-left: 2.4rem;
+    }
+    .comment.depth-7,
+    .comment.depth-8 {
+      margin-left: 2.8rem;
+    }
+  }
+}

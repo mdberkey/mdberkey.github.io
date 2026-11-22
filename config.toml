@@ -34,6 +34,11 @@ page_titles = "combined"
 favicon = "/favicon.png"
 favicon_mimetype = "image/png"
 
+# Self-hosted comment service (blog-comments), mounted under /comments on the
+# home server. For local testing point this at
+# http://127.0.0.1:18080/comments and rebuild the site.
+comments_url = "https://mikecraft.ooguy.com/comments"
+
 social_links = [
     { name = "email", url = "mailto:mberkey2@gmail.com"},
     { name = "github", url = "https://github.com/mdberkey"},

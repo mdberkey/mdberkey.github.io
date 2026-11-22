@@ -11,3 +11,13 @@
         {{<post.earlier_later page={page} />}}
     </div>
 {% endblock content %}
+
+{% block comments %}
+{% if page.path is starting_with(pat="/blog/") and config.extra.comments_url %}
+    <section id="comments" data-src="{{ config.extra.comments_url }}/embed?page={{ page.path }}">
+        <h2>comments</h2>
+        <p><a href="{{ config.extra.comments_url }}/thread?page={{ page.path }}">open comments</a></p>
+    </section>
+    <script src="{{ get_url(path='comments.js', cachebust=true) }}" defer></script>
+{% endif %}
+{% endblock comments %}
