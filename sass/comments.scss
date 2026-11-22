@@ -34,7 +34,9 @@
   }
 
   .comments-heading {
-    margin: 0 0 1rem;
+    margin: 0 0 1.35rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent);
     font-size: 1.1rem;
     font-weight: 600;
   }
@@ -44,11 +46,6 @@
     font-weight: 400;
     font-size: 0.85em;
     color: var(--comments-muted);
-  }
-
-  .comments-empty {
-    color: var(--comments-muted);
-    font-size: 0.95rem;
   }
 
   .comments-notice {
@@ -172,9 +169,7 @@
   }
 
   .comment-form {
-    margin-top: 1rem;
-    padding-top: 0.9rem;
-    border-top: 1px dashed var(--comments-line);
+    margin-top: 1.6rem;
   }
 
   .comment-field {
