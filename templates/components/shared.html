@@ -19,7 +19,7 @@
 {% component post.date(page) %}
 <span class="post-date">
     {%- if page.date -%}
-        {{ page.date | date(format="%Y-%m-%d") }}
+        {{ page.date | date(format="%m-%d-%Y") }}
     {%- endif -%}
 </span>
 {% endcomponent post.date %}
@@ -82,7 +82,7 @@
     {% endif -%}
     <li class="post-list">
         <a href="{{ page.permalink | safe }}">
-            <span class="post-date">{% if page.date %}{{ page.date | date(format="%Y-%m-%d") }}{% endif %}</span>
+            <span class="post-date">{% if page.date %}{{ page.date | date(format="%m-%d-%Y") }}{% endif %}</span>
             :: <span class="post-list-title">{{ page.title }}</span></a>
         {{<post.tags page={page} short={true} />}}
     </li>
