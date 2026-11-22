@@ -18,6 +18,6 @@
         <h2>comments</h2>
         <p><a href="{{ config.extra.comments_url }}/thread?page={{ page.path }}">open comments</a></p>
     </section>
-    <script src="{{ get_url(path='comments.js', cachebust=true) }}" defer></script>
+    <script src="{{ get_url(path='comments.js') }}" defer></script>
 {% endif %}
 {% endblock comments %}

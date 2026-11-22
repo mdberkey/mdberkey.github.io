@@ -1,5 +1,4 @@
-// Blog integration for blog-comments. Fetches the fragment, swaps it in,
-// submits forms with X-Fragment: 1, and loads reply forms without navigation.
+// Blog integration for blog-comments.
 (() => {
   'use strict';
 
@@ -11,14 +10,12 @@
   const embedUrl = new URL(src, location.href);
   const origin = embedUrl.origin;
   const page = embedUrl.searchParams.get('page') || location.pathname;
-  // The service may live under a path prefix (e.g. /comments). The embed URL
-  // always ends in /embed, so everything before that is the service root.
+  // The service may live under a path prefix (e.g. /comments).
   const serviceBase = embedUrl.pathname.replace(/\/embed$/, '');
   const embedPath = serviceBase + '/embed';
   const commentUrl = origin + serviceBase + '/comment';
 
-  // The service renders every timestamp in UTC. Rewrite them in the browser so
-  // the reader's timezone never leaves their machine.
+  // The service renders UTC; format in the reader's timezone instead.
   const timeFormat = new Intl.DateTimeFormat(undefined, {
     year: 'numeric',
     month: 'short',
@@ -39,8 +36,7 @@
     });
   }
 
-  // Storage can be blocked outright (privacy settings, private mode). Losing
-  // the saved name must not break the widget.
+  // Storage can be blocked; losing the saved name must not break the widget.
   function readAuthor() {
     try {
       return localStorage.getItem(AUTHOR_KEY);
@@ -53,7 +49,7 @@
     try {
       localStorage.setItem(AUTHOR_KEY, name);
     } catch (error) {
-      // Remembering the name is a convenience, not a requirement.
+      // Remembering the name is optional.
     }
   }
 
@@ -61,23 +57,20 @@
     if (!root) return;
     localizeTimes();
     root.querySelectorAll('form.comment-form').forEach((form) => {
-      // The native fallback must post to the service, not the blog origin.
       form.action = commentUrl;
       const author = form.querySelector('input[name="author"]');
       const saved = readAuthor();
       if (author && !author.value && saved) author.value = saved;
       form.addEventListener('submit', onSubmit);
     });
-    // Reply and cancel both point at the service's /embed endpoint. Keep them
-    // in the widget instead of navigating the blog to a bare fragment.
+    // Keep reply and cancel links inside the widget.
     root.querySelectorAll('a[href]').forEach((link) => {
       const url = new URL(link.getAttribute('href'), origin);
       if (url.origin !== origin || url.pathname !== embedPath) return;
       link.href = url.toString();
       link.addEventListener('click', onInlineLink);
     });
-    // The service points timestamps at its standalone page. Keep the permalink
-    // on the post instead, so clicking one stays on the blog.
+    // Keep timestamp permalinks on the post.
     root.querySelectorAll('a.comment-time').forEach((link) => {
       const comment = link.closest('li[id^="c"]');
       if (comment) link.href = '#' + comment.id;
@@ -91,8 +84,7 @@
     if (target) target.scrollIntoView({ block: 'center' });
   }
 
-  // Images and the video above the comments keep resizing the page while they
-  // load, which moves the target. Re-run the jump until the layout settles.
+  // Media above the comments keeps resizing the page after load.
   function scrollToHashWhenSettled() {
     scrollToHash();
     window.addEventListener('load', scrollToHash, { once: true });
@@ -100,8 +92,7 @@
     setTimeout(scrollToHash, 600);
   }
 
-  // Only the newest request may repaint the section. Without this, a slow
-  // reply fetch can land after a cancel and put the form back.
+  // Only the newest request may repaint the section.
   let requestSeq = 0;
   let submitting = false;
 
@@ -109,7 +100,6 @@
     if (!root) return false;
     const parsed = new DOMParser().parseFromString(html, 'text/html');
     const next = parsed.querySelector('#comments');
-    // Never replace the widget with an error page or an empty body.
     if (!next) return false;
     root.replaceWith(next);
     root = next;
@@ -155,8 +145,7 @@
           headers: { 'X-Fragment': '1' },
         });
       } catch (error) {
-        // The request never reached the service. Let the browser post the
-        // form itself so the comment is not lost.
+        // Let the browser post natively if fetch never reached the service.
         form.removeEventListener('submit', onSubmit);
         form.submit();
         return;
@@ -179,11 +168,9 @@
         posted.scrollIntoView({ block: 'center' });
         history.replaceState(null, '', '#c' + id);
       } else {
-        // Held for moderation, or the id was not rendered: no anchor to point at.
         history.replaceState(null, '', '#comments');
       }
     } catch (error) {
-      // The request succeeded but the body did not arrive intact.
       showError('Your comment may have been posted. Reload the page to check.');
     } finally {
       submitting = false;
