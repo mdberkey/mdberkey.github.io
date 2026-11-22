@@ -7,6 +7,7 @@ tags = ["cardputer", "ethical-hacking"]
 
 [extra]
 emoticon = "[X_X]"
+pangram = "https://www.pangram.com/history/baaa22bb-3c85-4e7f-ac5f-0befd6b56025?ucc=DCxECsOwBni&utm_source=pangram_share&utm_medium=copy_link"
 +++
 
 I've been having fun exploring the [infrared features](https://wiki.bruce.computer/features/ir/) of [Bruce firmware](https://bruce.computer/) on my [cardputer](https://shop.m5stack.com/products/m5stack-cardputer-adv-version-esp32-s3). My favorite is the TV-B-Gone function, which spams 100+ `power off` signals used by common TVs and displays.

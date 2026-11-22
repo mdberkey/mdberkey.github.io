@@ -7,6 +7,11 @@
 {% block content %}
     <div class="post">
         {{<post.header page={page} />}}
+        {% if page.extra?.pangram %}
+        <p class="post-pangram">
+            <a href="{{ page.extra.pangram }}" target="_blank" rel="noopener">human-written + verified by pangram</a>
+        </p>
+        {% endif %}
         {{<post.content page={page} summary={false} show_only_description={false} />}}
         {{<post.earlier_later page={page} />}}
     </div>

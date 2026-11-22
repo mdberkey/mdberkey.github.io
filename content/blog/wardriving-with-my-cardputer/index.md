@@ -7,6 +7,7 @@ tags = ["cardputer", "ethical-hacking"]
 
 [extra]
 emoticon = ">:}"
+pangram = "https://www.pangram.com/history/f7b34491-f8fd-4332-b4a2-70852c2f3de2?ucc=DCxECsOwBni&utm_source=pangram_share&utm_medium=copy_link"
 +++
 
 My girlfriend gifted me a [Cardputer Adv](https://shop.m5stack.com/products/m5stack-cardputer-adv-version-esp32-s3) for my birthday, and I've had a lot of fun tinkering with it. I wanted a compact device to learn some white hat hacking. This made me want the [Flipper Zero](https://flipper.net/), until I saw that the base unit was $200! O_O. So I asked for a $30 Cardputer instead, and it's been great.

@@ -7,6 +7,7 @@ tags = ["zola"]
 
 [extra]
 emoticon = ":]"
+pangram = "https://www.pangram.com/history/aaf0bf18-c143-4916-a058-c28ef64fea3d?ucc=DCxECsOwBni"
 +++
 
 - TL;DR I made this website using Zola to discuss my work/interests.
