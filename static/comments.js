@@ -15,15 +15,15 @@
   const embedPath = serviceBase + '/embed';
   const commentUrl = origin + serviceBase + '/comment';
 
-  // The service renders UTC; format in the reader's timezone instead.
-  const timeFormat = new Intl.DateTimeFormat(undefined, {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-    timeZoneName: 'short',
-  });
+  // The service renders UTC; show the reader's local time as MM-DD-YYYY h:mm am.
+  const pad = (value) => String(value).padStart(2, '0');
+
+  function formatLocal(date) {
+    const hours = date.getHours();
+    const hour = hours % 12 || 12;
+    const suffix = hours < 12 ? 'am' : 'pm';
+    return `${pad(date.getMonth() + 1)}-${pad(date.getDate())}-${date.getFullYear()} ${hour}:${pad(date.getMinutes())} ${suffix}`;
+  }
 
   function localizeTimes() {
     if (!root) return;
@@ -31,7 +31,7 @@
       const date = new Date(el.getAttribute('datetime'));
       if (Number.isNaN(date.getTime())) return;
       if (!el.dataset.utc) el.dataset.utc = el.textContent;
-      el.textContent = timeFormat.format(date);
+      el.textContent = formatLocal(date);
       el.title = el.dataset.utc;
     });
   }
