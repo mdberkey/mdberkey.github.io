@@ -7,6 +7,7 @@ tags = ["python", "LLM"]
 
 [extra]
 emoticon = "^_^"
+pangram = "https://www.pangram.com/history/3a902a9e-e383-429c-8f3b-ac1dc1f2a0a9?ucc=DCxECsOwBni&utm_source=pangram_share&utm_medium=copy_link"
 +++
 
 - TL;DR I extracted keywords from job descriptions with [Gemini](https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/) and created a Python script to rank them to enhance my friend's resume.

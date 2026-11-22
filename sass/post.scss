@@ -71,6 +71,22 @@
     }
   }
 
+  &-pangram {
+    margin: 6px 0 0;
+    font-size: 0.75rem;
+
+    a {
+      color: var(--accent-alpha-70);
+      text-decoration: underline dotted color-mix(in srgb, var(--accent) 45%, transparent);
+      text-underline-offset: 4px;
+
+      &:hover {
+        color: var(--accent);
+        text-decoration-color: var(--accent);
+      }
+    }
+  }
+
   &-content {
     margin-top: 30px;
   }

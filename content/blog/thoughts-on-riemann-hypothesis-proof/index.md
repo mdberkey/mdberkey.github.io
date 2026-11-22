@@ -7,6 +7,7 @@ tags = ["news", "math", "ai"]
 
 [extra]
 emoticon = "O_O"
+pangram = "https://www.pangram.com/history/35a4cb1e-121d-4101-ad5c-3dbc75e583d7?ucc=DCxECsOwBni&utm_source=pangram_share&utm_medium=copy_link"
 +++
 
 The Riemann hypothesis [was announced as (likely) proven today](https://alpo.ge/remark.pdf). I've always been an amateur at math, but I understand how groundbreaking this result is.
