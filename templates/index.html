@@ -203,6 +203,7 @@
             {% endblock emoticon %}
         {% endif %}
     </div>
+    {% block comments %}{% endblock comments %}
     <div class="footer-soc-icons" style="display: block;">
        {% for link in config.extra.social_links %}
             <a
