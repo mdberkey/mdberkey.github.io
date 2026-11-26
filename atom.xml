@@ -60,10 +60,13 @@ Your browser does not support HTML5 video.
 &lt;/figure&gt;
 &lt;p&gt;A standalone cardputer has a built-in IR blaster, but it&#39;s incredibly weak. I have to point it directly at my TV&#39;s receiver from ~2 ft away for it to work. I bought this &lt;a rel=&quot;external&quot; href=&quot;https://shop.m5stack.com/products/ir-unit&quot;&gt;IR emitter &amp;amp; receiver module&lt;/a&gt;, but the emitter only has ~3 ft of range.&lt;/p&gt;
 &lt;p&gt;I wanted to use my cardputer like a typical TV remote, so I bought this &lt;a rel=&quot;external&quot; href=&quot;https://www.aliexpress.us/item/3256807806520912.html?gatewayAdapt=glo2usa4itemAdapt&quot;&gt;3W IR transmitter&lt;/a&gt;. After some testing, it has a much better range of ~30 ft. I did have to use some duct tape to attach it to my cardputer and keep the wires compact.&lt;/p&gt;
-&lt;img src=&quot;IR_emitter.png&quot; alt=&quot;My 5V IR emitter attached to my cardputer.&quot; class=&quot;center&quot; style=&quot;border-radius: 8px;&quot; decoding=&quot;async&quot; loading=&quot;lazy&quot;/&gt;
+&lt;img src=&quot;IR_emitter-web.jpg&quot; alt=&quot;My 5V IR emitter attached to my cardputer.&quot; class=&quot;center&quot; style=&quot;border-radius: 8px;&quot; decoding=&quot;async&quot; loading=&quot;lazy&quot;/&gt;
 &lt;p&gt;Bruce also has this cool jamming feature which can essentially &quot;blind&quot; an IR receiver, causing it not to register signals from other devices. I&#39;ve also used the IR receiver on my expansion module to read and save incoming signals, allowing me to clone TV remotes.&lt;/p&gt;
 &lt;p&gt;Looking forward to testing this on other devices with IR receivers such as LED strips, AC units, etc. Also, fun fact: most cameras can &quot;see&quot; IR light, and my phone&#39;s camera has been very useful for debugging.&lt;/p&gt;
-&lt;img src=&quot;IR_blasting.gif&quot; alt=&quot;My IR emitter visibly emitting.&quot; class=&quot;center&quot; style=&quot;border-radius: 8px;&quot; decoding=&quot;async&quot; loading=&quot;lazy&quot;/&gt;
+&lt;video width=&quot;596&quot; height=&quot;602&quot; autoplay muted loop playsinline preload=&quot;auto&quot; poster=&quot;IR_blasting_poster.jpg&quot; role=&quot;img&quot; aria-label=&quot;My IR emitter visibly emitting.&quot; style=&quot;display: block; margin-left: auto; margin-right: auto; max-width: 100%; height: auto; border-radius: 8px;&quot;&gt;
+&lt;source src=&quot;IR_blasting.mp4&quot; type=&quot;video/mp4&quot;&gt;
+Your browser does not support HTML5 video.
+&lt;/video&gt;
 </content>
         
     </entry>
@@ -82,13 +85,13 @@ Your browser does not support HTML5 video.
         <content type="html" xml:base="https://mdberkey.github.io/blog/wardriving-with-my-cardputer/">&lt;p&gt;My girlfriend gifted me a &lt;a rel=&quot;external&quot; href=&quot;https://shop.m5stack.com/products/m5stack-cardputer-adv-version-esp32-s3&quot;&gt;Cardputer Adv&lt;/a&gt; for my birthday, and I&#39;ve had a lot of fun tinkering with it. I wanted a compact device to learn some white hat hacking. This made me want the &lt;a rel=&quot;external&quot; href=&quot;https://flipper.net/&quot;&gt;Flipper Zero&lt;/a&gt;, until I saw that the base unit was $200! O_O. So I asked for a $30 Cardputer instead, and it&#39;s been great.&lt;/p&gt;
 &lt;p&gt;I&#39;ve added many expansion modules so far: An &lt;a rel=&quot;external&quot; href=&quot;https://shop.m5stack.com/products/ir-unit?variant=16804756979802&quot;&gt;IR emitter/receiver&lt;/a&gt;, an &lt;a rel=&quot;external&quot; href=&quot;https://shop.m5stack.com/products/rfid-unit-2-ws1850s?variant=40753463885996&quot;&gt;RFID module&lt;/a&gt;, a &lt;a rel=&quot;external&quot; href=&quot;https://www.pingequa.com/products/cardputer-adv-hydra-rf-424&quot;&gt;CC1101 + nRF24L01 cap&lt;/a&gt;, and a &lt;a rel=&quot;external&quot; href=&quot;https://shop.m5stack.com/products/gps-bds-unit-v1-1-at6668?variant=45727253692673&quot;&gt;GPS module&lt;/a&gt;. For the firmware, I use &lt;a rel=&quot;external&quot; href=&quot;https://bmorcelli.github.io/Launcher/&quot;&gt;Launcher&lt;/a&gt; and primarily &lt;a rel=&quot;external&quot; href=&quot;https://bruce.computer/&quot;&gt;Bruce&lt;/a&gt;, although there are a few bugs depending on the version.&lt;/p&gt;
 &lt;div class=&quot;row2&quot;&gt;
-  &lt;img src=&quot;cardputer_front.jpg&quot; alt=&quot;Front view for my cardputer.&quot; decoding=&quot;async&quot; loading=&quot;lazy&quot;&gt;
-  &lt;img src=&quot;cardputer_back.jpg&quot; alt=&quot;Back view of my cardputer.&quot; decoding=&quot;async&quot; loading=&quot;lazy&quot;&gt;
+  &lt;img src=&quot;cardputer_front-web.jpg&quot; alt=&quot;Front view for my cardputer.&quot; decoding=&quot;async&quot; loading=&quot;lazy&quot;&gt;
+  &lt;img src=&quot;cardputer_back-web.jpg&quot; alt=&quot;Back view of my cardputer.&quot; decoding=&quot;async&quot; loading=&quot;lazy&quot;&gt;
 &lt;/div&gt;
 &lt;p&gt;My favorite activity is to do some &lt;a rel=&quot;external&quot; href=&quot;https://en.wikipedia.org/wiki/Wardriving&quot;&gt;wardriving&lt;/a&gt; with the GPS module. For the unaware: wardriving is the practice of using a wireless device while moving to search for Wi-Fi networks and Bluetooth devices. A typical piece of Wardriving software will search for a network and then log the GPS location, which can be used to make a map of different networks.&lt;/p&gt;
 &lt;p&gt;Why? Ethical wardrivers might be doing anything from OSINT investigations to security audits, while malicious wardrivers could be searching for vulnerable networks, for example.&lt;/p&gt;
 &lt;p&gt;For me, it&#39;s just interesting and fun to map out all of the networks in my area. I do live in the dense city of Chicago, but I still find it crazy just how many networks are around me, ~18k so far! And I&#39;ve only been doing this for about a month. Here is my latest map as of making this post:&lt;/p&gt;
-&lt;img src=&quot;wardriving_map.png&quot; alt=&quot;My wardriving map.&quot; class=&quot;center&quot; style=&quot;border-radius: 8px;&quot; decoding=&quot;async&quot; loading=&quot;lazy&quot;/&gt;
+&lt;img src=&quot;wardriving_map-web.jpg&quot; alt=&quot;My wardriving map.&quot; class=&quot;center&quot; style=&quot;border-radius: 8px;&quot; decoding=&quot;async&quot; loading=&quot;lazy&quot;/&gt;
 &lt;p&gt;You can probably guess roughly where I live. I also enjoy finding funny SSIDs. Here are my top 3:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;Fist my Bump&lt;/code&gt;&lt;/li&gt;
