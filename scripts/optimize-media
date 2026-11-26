@@ -1,0 +1,197 @@
+#!/usr/bin/env bash
+# Optimize post media: images to JPEG, GIFs and videos to H.264.
+set -euo pipefail
+
+umask 022
+
+usage() {
+  cat <<'EOF'
+Usage: ./scripts/optimize-media [options] FILE...
+
+Images become JPEG next to the source, GIFs become an MP4 plus a JPEG
+poster, and videos become a smaller H.264 MP4. Source files stay in place;
+point the post at the optimized file and remove the source.
+
+Options:
+  -w, --width N        Max image width in px (default: 1800)
+      --qscale N       JPEG quality scale, 2-31, lower is better (default: 2)
+      --video-width N  Max video width in px (default: 1920)
+      --crf N          H.264 CRF for regular video, 0-51 (default: 20)
+      --force          Overwrite existing output files
+  -h, --help           Show this help
+
+Set FFMPEG=/path/to/ffmpeg when ffmpeg is not on PATH.
+
+Examples:
+  ./scripts/optimize-media photo.jpg       -> photo-web.jpg
+  ./scripts/optimize-media --width 900 side-by-side.jpg
+  ./scripts/optimize-media animation.gif   -> animation.mp4 + animation_poster.jpg
+  ./scripts/optimize-media clip.mp4        -> clip-web.mp4
+EOF
+}
+
+die() {
+  printf 'error: %s\n' "$*" >&2
+  exit 1
+}
+
+width=1800
+qscale=2
+video_width=1920
+crf=20
+gif_crf=18
+force=0
+files=()
+
+while (($#)); do
+  case "$1" in
+    -w|--width)
+      [[ $# -ge 2 ]] || die "$1 needs a value"
+      width=$2
+      shift 2
+      ;;
+    --qscale)
+      [[ $# -ge 2 ]] || die "$1 needs a value"
+      qscale=$2
+      shift 2
+      ;;
+    --video-width)
+      [[ $# -ge 2 ]] || die "$1 needs a value"
+      video_width=$2
+      shift 2
+      ;;
+    --crf)
+      [[ $# -ge 2 ]] || die "$1 needs a value"
+      crf=$2
+      shift 2
+      ;;
+    --force)
+      force=1
+      shift
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    --)
+      shift
+      while (($#)); do
+        files+=("$1")
+        shift
+      done
+      ;;
+    -*)
+      die "unknown option: $1 (try --help)"
+      ;;
+    *)
+      files+=("$1")
+      shift
+      ;;
+  esac
+done
+
+((${#files[@]})) || {
+  usage >&2
+  exit 1
+}
+
+[[ $width =~ ^[0-9]+$ ]] && ((10#$width > 0)) || die "--width must be a positive integer"
+[[ $video_width =~ ^[0-9]+$ ]] && ((10#$video_width > 0)) || die "--video-width must be a positive integer"
+[[ $qscale =~ ^[0-9]+$ ]] && ((10#$qscale >= 2 && 10#$qscale <= 31)) || die "--qscale must be 2-31"
+[[ $crf =~ ^[0-9]+$ ]] && ((10#$crf <= 51)) || die "--crf must be 0-51"
+
+FFMPEG="${FFMPEG:-ffmpeg}"
+FFMPEG=$(command -v "$FFMPEG" || true)
+[[ -n "$FFMPEG" && -x "$FFMPEG" ]] || die "ffmpeg not found; install it or set FFMPEG=/path/to/ffmpeg"
+
+FFPROBE="${FFPROBE:-}"
+if [[ -n "$FFPROBE" ]]; then
+  FFPROBE=$(command -v "$FFPROBE" || true)
+else
+  FFPROBE=$(command -v ffprobe || true)
+  if [[ -z "$FFPROBE" ]]; then
+    candidate="${FFMPEG%ffmpeg}ffprobe"
+    [[ -x "$candidate" ]] && FFPROBE=$candidate
+  fi
+fi
+
+size_kb() {
+  printf '%s KB' "$(( $(wc -c < "$1") / 1024 ))"
+}
+
+dimensions() {
+  [[ -n "$FFPROBE" ]] || return 0
+  "$FFPROBE" -v error -select_streams v:0 -show_entries stream=width,height \
+    -of csv=p=0 "$1" | head -n1 | tr ',' 'x'
+}
+
+remove_note() {
+  printf '  point the post at the new file and remove the source from content (git history keeps it)\n'
+}
+
+for src in "${files[@]}"; do
+  [[ -f "$src" ]] || die "not a file: $src"
+
+  dir=$(dirname -- "$src")
+  filename=$(basename -- "$src")
+  name=${filename%.*}
+  ext=${filename##*.}
+  ext=${ext,,}
+
+  case "$ext" in
+    jpg|jpeg|png|webp)
+      out="$dir/$name-web.jpg"
+      if [[ -e "$out" && $force -ne 1 ]]; then
+        printf 'skip %s (already exists, use --force)\n' "$out"
+        continue
+      fi
+
+      printf 'image %s -> %s ... ' "$src" "$out"
+      "$FFMPEG" -y -nostdin -hide_banner -loglevel error -i "$src" \
+        -vf "scale='min($width,iw)':-2:flags=lanczos" \
+        -c:v mjpeg -q:v "$qscale" -map_metadata -1 "$out"
+      printf '%s %s\n' "$(dimensions "$out")" "$(size_kb "$out")"
+      printf '  {{< image src="%s" alt="..." />}}\n' "$(basename -- "$out")"
+      remove_note
+      ;;
+    gif)
+      out="$dir/$name.mp4"
+      poster="$dir/${name}_poster.jpg"
+      if [[ -e "$out" && -e "$poster" && $force -ne 1 ]]; then
+        printf 'skip %s (already exists, use --force)\n' "$out"
+        continue
+      fi
+
+      printf 'gif %s -> %s ... ' "$src" "$out"
+      "$FFMPEG" -y -nostdin -hide_banner -loglevel error -i "$src" \
+        -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" \
+        -c:v libx264 -crf "$gif_crf" -preset slow -pix_fmt yuv420p \
+        -an -movflags +faststart "$out"
+      "$FFMPEG" -y -nostdin -hide_banner -loglevel error -i "$out" \
+        -frames:v 1 -c:v mjpeg -q:v "$qscale" "$poster"
+      printf '%s %s\n' "$(dimensions "$out")" "$(size_kb "$out")"
+      printf '  {{< loopvideo src="%s" poster="%s" alt="..." />}}\n' \
+        "$(basename -- "$out")" "$(basename -- "$poster")"
+      remove_note
+      ;;
+    mp4|m4v|mov|webm|avi|mkv)
+      out="$dir/$name-web.mp4"
+      if [[ -e "$out" && $force -ne 1 ]]; then
+        printf 'skip %s (already exists, use --force)\n' "$out"
+        continue
+      fi
+
+      printf 'video %s -> %s ... ' "$src" "$out"
+      "$FFMPEG" -y -nostdin -hide_banner -loglevel error -i "$src" \
+        -vf "scale='min($video_width,iw)':-2:flags=lanczos" \
+        -c:v libx264 -crf "$crf" -preset slow -pix_fmt yuv420p \
+        -c:a aac -b:a 128k -map_metadata -1 -movflags +faststart "$out"
+      printf '%s %s\n' "$(dimensions "$out")" "$(size_kb "$out")"
+      printf '  {{< video src="%s" desc="..." />}}\n' "$(basename -- "$out")"
+      remove_note
+      ;;
+    *)
+      die "unsupported file type: $src"
+      ;;
+  esac
+done
