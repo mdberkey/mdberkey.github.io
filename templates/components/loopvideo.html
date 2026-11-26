@@ -1,0 +1,6 @@
+{% component loopvideo(src, poster = "", alt = "", width = "", height = "") %}
+<video{% if width %} width="{{ width }}"{% endif %}{% if height %} height="{{ height }}"{% endif %} autoplay muted loop playsinline preload="auto"{% if poster %} poster="{{ poster }}"{% endif %}{% if alt %} role="img" aria-label="{{ alt }}"{% endif %} style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; height: auto; border-radius: 8px;">
+<source src="{{ src }}" type="video/mp4">
+Your browser does not support HTML5 video.
+</video>
+{% endcomponent loopvideo %}
