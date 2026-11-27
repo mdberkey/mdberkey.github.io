@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Optimize post media: images to JPEG, GIFs and videos to H.264.
+# Optimize media in place: images to JPEG, GIFs and videos to H.264.
 set -euo pipefail
 
 umask 022
@@ -8,25 +8,26 @@ usage() {
   cat <<'EOF'
 Usage: ./scripts/optimize-media [options] FILE...
 
-Images become JPEG next to the source, GIFs become an MP4 plus a JPEG
-poster, and videos become a smaller H.264 MP4. Source files stay in place;
-point the post at the optimized file and remove the source.
+Images become JPEG, GIFs become an MP4 plus a JPEG poster, and videos become a
+smaller H.264 MP4. The optimized file replaces the source and keeps its name
+when the format does not change; git history keeps the original.
 
 Options:
   -w, --width N        Max image width in px (default: 1800)
       --qscale N       JPEG quality scale, 2-31, lower is better (default: 2)
       --video-width N  Max video width in px (default: 1920)
       --crf N          H.264 CRF for regular video, 0-51 (default: 20)
-      --force          Overwrite existing output files
+      --force          Overwrite outputs and re-encode when the result is larger
   -h, --help           Show this help
 
 Set FFMPEG=/path/to/ffmpeg when ffmpeg is not on PATH.
 
 Examples:
-  ./scripts/optimize-media photo.jpg       -> photo-web.jpg
+  ./scripts/optimize-media photo.jpg       -> replaces photo.jpg
   ./scripts/optimize-media --width 900 side-by-side.jpg
+  ./scripts/optimize-media map.png         -> map.jpg
   ./scripts/optimize-media animation.gif   -> animation.mp4 + animation_poster.jpg
-  ./scripts/optimize-media clip.mp4        -> clip-web.mp4
+  ./scripts/optimize-media clip.mov        -> clip.mp4
 EOF
 }
 
@@ -42,6 +43,19 @@ crf=20
 gif_crf=18
 force=0
 files=()
+tmp_out=""
+tmp_poster=""
+
+cleanup() {
+  if [[ -n "${tmp_out:-}" ]]; then
+    rm -f -- "$tmp_out"
+  fi
+  if [[ -n "${tmp_poster:-}" ]]; then
+    rm -f -- "$tmp_poster"
+  fi
+  return 0
+}
+trap cleanup EXIT
 
 while (($#)); do
   case "$1" in
@@ -125,8 +139,14 @@ dimensions() {
     -of csv=p=0 "$1" | head -n1 | tr ',' 'x'
 }
 
-remove_note() {
-  printf '  point the post at the new file and remove the source from content (git history keeps it)\n'
+replace_note() {
+  local src=$1 out=$2
+  if [[ "$src" == "$out" ]]; then
+    printf '  replaced %s (git history keeps the original)\n' "$(basename -- "$out")"
+  else
+    printf '  converted %s to %s (git history keeps the original)\n' \
+      "$(basename -- "$src")" "$(basename -- "$out")"
+  fi
 }
 
 for src in "${files[@]}"; do
@@ -140,55 +160,96 @@ for src in "${files[@]}"; do
 
   case "$ext" in
     jpg|jpeg|png|webp)
-      out="$dir/$name-web.jpg"
-      if [[ -e "$out" && $force -ne 1 ]]; then
+      if [[ "$ext" == "jpg" ]]; then
+        out="$src"
+      else
+        out="$dir/$name.jpg"
+      fi
+      if [[ "$out" != "$src" && -e "$out" && $force -ne 1 ]]; then
         printf 'skip %s (already exists, use --force)\n' "$out"
         continue
       fi
 
-      printf 'image %s -> %s ... ' "$src" "$out"
+      printf 'image %s ... ' "$src"
+      tmp_out="$dir/.$name.opt.$$.jpg"
       "$FFMPEG" -y -nostdin -hide_banner -loglevel error -i "$src" \
         -vf "scale='min($width,iw)':-2:flags=lanczos" \
-        -c:v mjpeg -q:v "$qscale" -map_metadata -1 "$out"
+        -c:v mjpeg -q:v "$qscale" -map_metadata -1 "$tmp_out"
+      if [[ "$out" == "$src" && $force -ne 1 ]] \
+        && (( $(wc -c < "$tmp_out") >= $(wc -c < "$src") )); then
+        rm -f -- "$tmp_out"
+        tmp_out=""
+        printf 'skip (already optimized)\n'
+        continue
+      fi
+      mv -f -- "$tmp_out" "$out"
+      tmp_out=""
+      if [[ "$src" != "$out" ]]; then
+        rm -f -- "$src"
+      fi
       printf '%s %s\n' "$(dimensions "$out")" "$(size_kb "$out")"
       printf '  {{< image src="%s" alt="..." />}}\n' "$(basename -- "$out")"
-      remove_note
+      replace_note "$src" "$out"
       ;;
     gif)
       out="$dir/$name.mp4"
       poster="$dir/${name}_poster.jpg"
-      if [[ -e "$out" && -e "$poster" && $force -ne 1 ]]; then
+      if [[ ( -e "$out" || -e "$poster" ) && $force -ne 1 ]]; then
         printf 'skip %s (already exists, use --force)\n' "$out"
         continue
       fi
 
-      printf 'gif %s -> %s ... ' "$src" "$out"
+      printf 'gif %s ... ' "$src"
+      tmp_out="$dir/.$name.opt.$$.mp4"
+      tmp_poster="$dir/.${name}_poster.opt.$$.jpg"
       "$FFMPEG" -y -nostdin -hide_banner -loglevel error -i "$src" \
         -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" \
         -c:v libx264 -crf "$gif_crf" -preset slow -pix_fmt yuv420p \
-        -an -movflags +faststart "$out"
-      "$FFMPEG" -y -nostdin -hide_banner -loglevel error -i "$out" \
-        -frames:v 1 -c:v mjpeg -q:v "$qscale" "$poster"
+        -an -movflags +faststart "$tmp_out"
+      "$FFMPEG" -y -nostdin -hide_banner -loglevel error -i "$tmp_out" \
+        -frames:v 1 -c:v mjpeg -q:v "$qscale" "$tmp_poster"
+      mv -f -- "$tmp_out" "$out"
+      tmp_out=""
+      mv -f -- "$tmp_poster" "$poster"
+      tmp_poster=""
+      rm -f -- "$src"
       printf '%s %s\n' "$(dimensions "$out")" "$(size_kb "$out")"
       printf '  {{< loopvideo src="%s" poster="%s" alt="..." />}}\n' \
         "$(basename -- "$out")" "$(basename -- "$poster")"
-      remove_note
+      replace_note "$src" "$out"
       ;;
     mp4|m4v|mov|webm|avi|mkv)
-      out="$dir/$name-web.mp4"
-      if [[ -e "$out" && $force -ne 1 ]]; then
+      if [[ "$ext" == "mp4" ]]; then
+        out="$src"
+      else
+        out="$dir/$name.mp4"
+      fi
+      if [[ "$out" != "$src" && -e "$out" && $force -ne 1 ]]; then
         printf 'skip %s (already exists, use --force)\n' "$out"
         continue
       fi
 
-      printf 'video %s -> %s ... ' "$src" "$out"
+      printf 'video %s ... ' "$src"
+      tmp_out="$dir/.$name.opt.$$.mp4"
       "$FFMPEG" -y -nostdin -hide_banner -loglevel error -i "$src" \
         -vf "scale='min($video_width,iw)':-2:flags=lanczos" \
         -c:v libx264 -crf "$crf" -preset slow -pix_fmt yuv420p \
-        -c:a aac -b:a 128k -map_metadata -1 -movflags +faststart "$out"
+        -c:a aac -b:a 128k -map_metadata -1 -movflags +faststart "$tmp_out"
+      if [[ "$out" == "$src" && $force -ne 1 ]] \
+        && (( $(wc -c < "$tmp_out") >= $(wc -c < "$src") )); then
+        rm -f -- "$tmp_out"
+        tmp_out=""
+        printf 'skip (already optimized)\n'
+        continue
+      fi
+      mv -f -- "$tmp_out" "$out"
+      tmp_out=""
+      if [[ "$src" != "$out" ]]; then
+        rm -f -- "$src"
+      fi
       printf '%s %s\n' "$(dimensions "$out")" "$(size_kb "$out")"
       printf '  {{< video src="%s" desc="..." />}}\n' "$(basename -- "$out")"
-      remove_note
+      replace_note "$src" "$out"
       ;;
     *)
       die "unsupported file type: $src"
